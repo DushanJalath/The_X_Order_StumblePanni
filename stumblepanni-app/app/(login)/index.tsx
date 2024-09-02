@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -6,8 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { FontAwesome } from "@expo/vector-icons";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import AccentButton from "@/components/AccentButton";
 import InputView from "@/components/InputView";
@@ -19,32 +18,40 @@ const handelLogin = () => {
 };
 
 const index = () => {
-  const [hidePass, setHidePass] = useState(true);
-  const [isSelected, setSelection] = useState(false);
-
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome Back!</Text>
-      <Text style={styles.subtitle}>Log in to your account</Text>
+    <SafeAreaProvider>
+      <View style={styles.container}>
+        <Text style={styles.title}>Welcome Back!</Text>
+        <Text style={styles.subtitle}>Log in to your account</Text>
 
-    <InputView type="email" placeholder="Email"></InputView>
-    <InputView type="pass" placeholder="Password"></InputView>
+        <InputView type="email" placeholder="Email"></InputView>
+        <InputView type="pass" placeholder="Password"></InputView>
 
-      <View style={styles.optionsContainer}>
-        <View style={styles.rememberMeContainer}>
-          <Checkbox
-            size={18}
-            text="Remember me"
-            onValueChange={() => ({})}
-          ></Checkbox>
+        <View style={styles.optionsContainer}>
+          <View style={styles.rememberMeContainer}>
+            <Checkbox
+              size={18}
+              text="Remember me"
+              onValueChange={() => ({})}
+            ></Checkbox>
+          </View>
+          <TouchableOpacity>
+            <Text style={styles.forgotPassword}>Forgot Password?</Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity>
-          <Text style={styles.forgotPassword}>Forgot Password?</Text>
-        </TouchableOpacity>
-      </View>
 
-      <AccentButton onPress={handelLogin} title="Log in"></AccentButton>
-    </View>
+        <AccentButton onPress={handelLogin} title="Log in"></AccentButton>
+
+        <View style={styles.createAccountContainer}>
+          <Text style={styles.createAccountText}>
+            Don't you have an account?
+          </Text>
+          <TouchableOpacity>
+            <Text style={styles.createAccountLink}>Create Account</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </SafeAreaProvider>
   );
 };
 
@@ -59,14 +66,18 @@ const styles = StyleSheet.create({
   },
   createAccountContainer: {
     marginTop: 20,
+    flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
   },
   createAccountText: {
-    color: "gray",
+    color: Colors.pallete.darkgrey,
+    fontFamily: "JosefinSansLight",
   },
   createAccountLink: {
-    color: "#4ECCA3",
-    fontWeight: "bold",
+    color: Colors.pallete.accent,
+    fontFamily: "JosefinSansMedium",
   },
   forgotPasswordContainer: {
     alignItems: "flex-end",
