@@ -14,19 +14,18 @@ import Checkbox from "@/components/Checkbox";
 import DropdownView from "@/components/DropdownView";
 import { Colors } from "@/constants/Colors";
 import { Data } from "@/constants/Data";
+import { ScrollView } from "react-native-gesture-handler";
 
-const handelLogin = () => {
-  console.log("Login");
+const handleRegister = () => {
+  console.log("Register");
 };
 
-
-const index = () => {
-
-    
+const signup = () => {
   return (
+    <ScrollView>
       <View style={styles.container}>
         <Text style={styles.title}>Register</Text>
-        <Text style={styles.subtitle}>Log in to your account</Text>
+        <Text style={styles.subtitle}>Create your new account</Text>
 
         <InputView type="default" placeholder="Name"></InputView>
         <InputView type="email" placeholder="Email"></InputView>
@@ -34,35 +33,46 @@ const index = () => {
         <InputView type="pass" placeholder="Password"></InputView>
         <DropdownView placeholder="Select Country" items={Data.countries} />
 
-
-        <View style={styles.optionsContainer}>
-          <View style={styles.rememberMeContainer}>
-            <Checkbox
-              size={18}
-              text="Remember me"
-              onValueChange={() => ({})}
-            ></Checkbox>
-          </View>
-          <TouchableOpacity>
-            <Text style={styles.forgotPassword}>Forgot Password?</Text>
-          </TouchableOpacity>
-        </View>
-
-        <AccentButton onPress={handelLogin} title="Log in"></AccentButton>
-
         <View style={styles.createAccountContainer}>
-          <Text style={styles.createAccountText}>
-            Don't you have an account?
+          <Text style={styles.wrapperText}>
+            <Text style={styles.createAccountText}>
+              By signing up you agree to our {}
+            </Text>
+            <Link href="/">
+              <TouchableOpacity>
+                <Text style={styles.createAccountLink}>
+                  Terms & Conditions {}
+                </Text>
+              </TouchableOpacity>
+            </Link>
+            <Text style={styles.createAccountText}>and {}</Text>
+            <Link href="/">
+              <TouchableOpacity>
+                <Text style={styles.createAccountLink}>Privacy Policy</Text>
+              </TouchableOpacity>
+            </Link>
           </Text>
-          <TouchableOpacity>
-            <Text style={styles.createAccountLink}>Create Account</Text>
-          </TouchableOpacity>
+        </View>
+        <View style={styles.registerBtn}>
+          <AccentButton
+            onPress={handleRegister}
+            title="Register"
+          ></AccentButton>
+        </View>
+        <View style={styles.createAccountContainer}>
+          <Text style={styles.createAccountText}>Already have an account?</Text>
+          <Link href="/">
+            <TouchableOpacity>
+              <Text style={styles.createAccountLink}>Log in</Text>
+            </TouchableOpacity>
+          </Link>
         </View>
       </View>
+    </ScrollView>
   );
 };
 
-export default index;
+export default signup;
 
 const styles = StyleSheet.create({
   container: {
@@ -72,7 +82,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   createAccountContainer: {
-    marginTop: 20,
+    marginBottom: 20,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
@@ -135,5 +145,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5F5F5",
     padding: 10,
     borderRadius: 10,
+  },
+  registerBtn: {
+    marginBottom: 20,
+  },
+  wrapperText: {
+    textAlign: "center",
+    marginBottom: 20,
   },
 });
