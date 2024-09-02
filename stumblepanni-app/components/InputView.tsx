@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { Colors } from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
+import { Dropdown } from "react-native-element-dropdown";
 
 const InputView = ({
   type,
@@ -16,8 +17,9 @@ const InputView = ({
   style,
   textStyle,
 }: {
-  type: "email" | "pass" | "phone";
+  type: "default" | "email" | "pass" | "phone" | "dropdown";
   placeholder: string;
+  data?: any;
   validation?: () => {};
   style?: any;
   textStyle?: any;
@@ -28,6 +30,9 @@ const InputView = ({
   const handleToggleSecureEntry = () => {
     setSecureTextEntry(!secureTextEntry);
   };
+
+  
+
 
   const keyboardType = type === "phone" ? "numeric" : "default";
 
@@ -65,7 +70,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#F5F5F5",
+    backgroundColor: Colors.pallete.neutralgrey,
     borderRadius: 10,
     marginBottom: 15,
     paddingHorizontal: 10,

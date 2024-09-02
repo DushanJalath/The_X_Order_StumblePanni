@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
+import { Link } from "expo-router";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import AccentButton from "@/components/AccentButton";
@@ -19,39 +20,37 @@ const handelLogin = () => {
 
 const index = () => {
   return (
-    <SafeAreaProvider>
-      <View style={styles.container}>
-        <Text style={styles.title}>Welcome Back!</Text>
-        <Text style={styles.subtitle}>Log in to your account</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Welcome Back!</Text>
+      <Text style={styles.subtitle}>Log in to your account</Text>
 
-        <InputView type="email" placeholder="Email"></InputView>
-        <InputView type="pass" placeholder="Password"></InputView>
+      <InputView type="email" placeholder="Email"></InputView>
+      <InputView type="pass" placeholder="Password"></InputView>
 
-        <View style={styles.optionsContainer}>
-          <View style={styles.rememberMeContainer}>
-            <Checkbox
-              size={18}
-              text="Remember me"
-              onValueChange={() => ({})}
-            ></Checkbox>
-          </View>
-          <TouchableOpacity>
-            <Text style={styles.forgotPassword}>Forgot Password?</Text>
-          </TouchableOpacity>
+      <View style={styles.optionsContainer}>
+        <View style={styles.rememberMeContainer}>
+          <Checkbox
+            size={18}
+            text="Remember me"
+            onValueChange={() => ({})}
+          ></Checkbox>
         </View>
+        <TouchableOpacity>
+          <Text style={styles.forgotPassword}>Forgot Password?</Text>
+        </TouchableOpacity>
+      </View>
 
-        <AccentButton onPress={handelLogin} title="Log in"></AccentButton>
+      <AccentButton onPress={handelLogin} title="Log in"></AccentButton>
 
-        <View style={styles.createAccountContainer}>
-          <Text style={styles.createAccountText}>
-            Don't you have an account?
-          </Text>
+      <View style={styles.createAccountContainer}>
+        <Text style={styles.createAccountText}>Don't you have an account?</Text>
+        <Link href="/signup">
           <TouchableOpacity>
             <Text style={styles.createAccountLink}>Create Account</Text>
           </TouchableOpacity>
-        </View>
+        </Link>
       </View>
-    </SafeAreaProvider>
+    </View>
   );
 };
 
