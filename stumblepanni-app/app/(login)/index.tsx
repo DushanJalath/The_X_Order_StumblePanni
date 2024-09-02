@@ -8,6 +8,13 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
+import AccentButton from "@/components/AccentButton";
+import { Colors } from "@/constants/Colors";
+import InputView from "@/components/InputView";
+
+const handelLogin = () => {
+  console.log("Login");
+};
 
 const index = () => {
   const [hidePass, setHidePass] = useState(true);
@@ -18,30 +25,8 @@ const index = () => {
       <Text style={styles.title}>Welcome Back!</Text>
       <Text style={styles.subtitle}>Log in to your account</Text>
 
-      <View style={styles.inputContainer}>
-        {/* <Ionicons name="mail-outline" size={20} color="gray" style={styles.icon} /> */}
-        <TextInput
-          placeholder="JohnDoe@example.com"
-          style={styles.input}
-          keyboardType="email-address"
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        {/* <Ionicons name="mail-outline" size={20} color="gray" style={styles.icon} /> */}
-        <TextInput
-          placeholder="*******"
-          style={styles.input}
-          secureTextEntry={hidePass}
-          autoCorrect={false}
-        />
-        <TouchableOpacity onPress={() => setHidePass(!hidePass)}>
-          <Ionicons
-            name={hidePass ? "eye-off-outline" : "eye-outline"}
-            size={26}
-            color="gray"
-          />
-        </TouchableOpacity>
-      </View>
+    <InputView type="email" placeholder="Email"></InputView>
+    <InputView type="pass" placeholder="Password"></InputView>
 
       <View style={styles.optionsContainer}>
         <View style={styles.rememberMeContainer}>
@@ -59,9 +44,7 @@ const index = () => {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity style={styles.loginButton}>
-        <Text style={styles.loginButtonText}>Log in</Text>
-      </TouchableOpacity>
+      <AccentButton onPress={handelLogin} title="Log in"></AccentButton>
     </View>
   );
 };
@@ -98,14 +81,17 @@ const styles = StyleSheet.create({
     color: "gray",
   },
   title: {
-    fontSize: 28,
-    fontWeight: "bold",
+    fontSize: 36,
+    fontFamily: "JosefinSansBold",
+    color: Colors.pallete.darkgrey,
     textAlign: "center",
     marginBottom: 10,
   },
   subtitle: {
     fontSize: 16,
-    color: "gray",
+    fontFamily: "JosefinSansLight",
+    color: Colors.pallete.darkgrey,
+    opacity: 0.5,
     textAlign: "center",
     marginBottom: 20,
   },
@@ -134,23 +120,6 @@ const styles = StyleSheet.create({
   rememberMeContainer: {
     flexDirection: "row",
     alignItems: "center",
-  },
-
-  loginButton: {
-    backgroundColor: "#4ECCA3",
-    borderRadius: 10,
-    paddingVertical: 15,
-    marginBottom: 20,
-  },
-  loginButtonText: {
-    color: "#fff",
-    fontSize: 18,
-    textAlign: "center",
-  },
-  orText: {
-    textAlign: "center",
-    marginBottom: 20,
-    color: "gray",
   },
   socialContainer: {
     flexDirection: "row",

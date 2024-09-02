@@ -14,6 +14,13 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    JosefinSansExtraLight: require('../assets/fonts/JosefinSans-ExtraLight.ttf'),
+    JosefinSansLight: require('../assets/fonts/JosefinSans-Light.ttf'),
+    JosefinSansRegular: require('../assets/fonts/JosefinSans-Regular.ttf'),
+    JosefinSansBold: require('../assets/fonts/JosefinSans-Bold.ttf'),
+    JosefinSansSemiBold: require('../assets/fonts/JosefinSans-SemiBold.ttf'),
+    JosefinSansThin: require('../assets/fonts/JosefinSans-Thin.ttf'),
+    JosefinSansMedium: require('../assets/fonts/JosefinSans-Medium.ttf'),
   });
 
   useEffect(() => {
