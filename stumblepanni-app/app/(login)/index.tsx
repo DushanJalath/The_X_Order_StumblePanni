@@ -8,9 +8,11 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
+
 import AccentButton from "@/components/AccentButton";
-import { Colors } from "@/constants/Colors";
 import InputView from "@/components/InputView";
+import Checkbox from "@/components/Checkbox";
+import { Colors } from "@/constants/Colors";
 
 const handelLogin = () => {
   console.log("Login");
@@ -30,14 +32,11 @@ const index = () => {
 
       <View style={styles.optionsContainer}>
         <View style={styles.rememberMeContainer}>
-          {/* <RoundCheckbox
-            size={24}
-            checked={this.state.isSelected}
-            onValueChange={(newValue) => {
-              console.log(newValue);
-            }}
-          /> */}
-          <Text style={styles.label}>Remember me</Text>
+          <Checkbox
+            size={18}
+            text="Remember me"
+            onValueChange={() => ({})}
+          ></Checkbox>
         </View>
         <TouchableOpacity>
           <Text style={styles.forgotPassword}>Forgot Password?</Text>
@@ -73,8 +72,9 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
   },
   forgotPassword: {
-    fontSize: 14,
-    color: "#4ECCA3",
+    fontSize: 12,
+    fontFamily: "JosefinSansMedium",
+    color: Colors.pallete.accent,
   },
   label: {
     fontSize: 14,
@@ -97,19 +97,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 10,
-  },
-  input: {
-    flex: 1,
-    fontSize: 16,
-  },
-  inputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#F5F5F5",
-    borderRadius: 10,
-    marginBottom: 15,
-    paddingHorizontal: 10,
-    paddingVertical: 15,
   },
   optionsContainer: {
     flexDirection: "row",
