@@ -11,10 +11,11 @@ import { CommonStyles } from "@/constants/CommonStyles";
 import { router } from "expo-router";
 import { TouchableWithoutFeedback } from "react-native";
 import { Colors } from "@/constants/Colors";
-import AccentButton from "@/components/AccentButton";
 
 const assets = {
-  Persona: require("../../../assets/images/Characters_png/Muslim.png"),
+  Persona1: require("../../../assets/images/Characters_png/Muslim.png"),
+  PersonaLeft: require("../../../assets/images/Characters_png/joris.png"),
+  PersonaRight: require("../../../assets/images/Characters_png/Mitra.png"),
   Background: require("../../../assets/images/Onboarding/pexels-esrageziyor-45760220-11490144.jpg"),
 };
 
@@ -22,11 +23,8 @@ const { width, height } = Dimensions.get("window");
 
 const PersonaIntro = () => {
   const handleTouch = () => {
-    router.push("/onboarding/part4");
+    router.push("/onboarding/part2/screen4");
   };
-  const handleLearnMore = () => {
-    router.push("/onboarding/part2/screen1");
-  }
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -40,14 +38,14 @@ const PersonaIntro = () => {
         >
           <View style={styles.textView}>
             <Text style={styles.text}>
-              Need help navigating? Meet our Guides throughout your journey!{" "}
+              And there is someone truly special to look after you in your
+              journeys..
             </Text>
-            <AccentButton title="Learn More" onPress={handleLearnMore} style={styles.button}></AccentButton>
-          <Image
-            source={assets.Persona}
-            resizeMode="contain"
-            style={styles.persona}
-          />
+            <Image
+              source={assets.Persona1}
+              resizeMode="contain"
+              style={styles.persona1}
+            />
           </View>
         </TouchableWithoutFeedback>
       </ImageBackground>
@@ -85,9 +83,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  persona: {
+  persona1: {
     position: "absolute",
     bottom: 0,
+    width: width,
+    height: height / 2,
+    zIndex: 10,
+  },
+  personaLeft: {
+    position: "absolute",
+    bottom: -60,
+    right: width * 0.35,
+    width: width,
+    height: height / 2,
+  },
+  personaRight: {
+    position: "absolute",
+    bottom: -60,
+    left: width * 0.35,
     width: width,
     height: height / 2,
   },
@@ -97,5 +110,5 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     paddingTop: 0,
     paddingBottom: 5,
-  }
+  },
 });
