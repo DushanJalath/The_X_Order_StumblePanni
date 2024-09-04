@@ -31,7 +31,7 @@ import {
           >
             <View style={styles.textView}>
               <Text style={styles.text}>
-                Part5
+                Part4
               </Text>
             </View>
           </TouchableWithoutFeedback>

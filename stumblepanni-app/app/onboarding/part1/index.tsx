@@ -8,7 +8,7 @@ import {
 import React from "react";
 import { CommonStyles } from "@/constants/CommonStyles";
 import { router } from "expo-router";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { TouchableWithoutFeedback } from "react-native";
 
 const assets = {
   LogoMain: require("../../../assets/images/Logo/logo-name.png"),
@@ -30,24 +30,22 @@ const Begin = () => {
   });
 
   return (
-    <View style={CommonStyles.centeredContent}>
+    <ImageBackground
+          source={assets.Background}
+          style={CommonStyles.containerBackgroundImage}
+        >
       <TouchableWithoutFeedback
         onPress={handleTouch}
         style={CommonStyles.centeredContent}
       >
-        <ImageBackground
-          source={assets.Background}
-          style={CommonStyles.containerBackgroundImage}
-        >
           <View style={CommonStyles.centeredContent}>
             <Image
               source={assets.LogoMain}
               style={StyleSheet.flatten([dynamicStyles.logo, styles.logo])}
             />
           </View>
-        </ImageBackground>
       </TouchableWithoutFeedback>
-    </View>
+        </ImageBackground>
   );
 };
 
