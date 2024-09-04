@@ -1,12 +1,12 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Stack, useRouter } from "expo-router";
-import { Image, TouchableOpacity, StatusBar, Button, View } from "react-native";
+import { Image, TouchableOpacity, StatusBar } from "react-native";
 
 export default function VisaLayout() {
 	const router = useRouter();
 
 	const navigateToHome = () => {
-		router.replace("/(main)"); // This will navigate to the root app/index
+		router.replace("/mainmenu"); // This will navigate to the root app/index
 	};
 
 	const navigateBack = () => {
