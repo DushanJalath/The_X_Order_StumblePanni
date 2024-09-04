@@ -6,6 +6,7 @@ import {
   Dimensions,
 } from "react-native";
 import React from "react";
+import { MdCatchingPokemon } from "react-icons/md";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { CommonStyles } from "@/constants/CommonStyles";
@@ -14,14 +15,14 @@ import { TouchableWithoutFeedback } from "react-native";
 import { Colors } from "@/constants/Colors";
 
 const assets = {
-  Background: require("../../../assets/images/Onboarding/pexels-alexazabache-3250362.jpg"),
+  Background: require("../../../assets/images/Onboarding/pexels-namal-siriwardana-162265496-26923471.jpg"),
 };
 
 const { width, height } = Dimensions.get("window");
 
-const Feature1 = () => {
+const Feature3 = () => {
   const handleTouch = () => {
-    router.push("/onboarding/part3/screen1");
+    router.push("/onboarding/part4");
   };
   return (
     <View style={styles.container}>
@@ -34,15 +35,24 @@ const Feature1 = () => {
           onPress={handleTouch}
           style={CommonStyles.centeredContent}
         >
-                    <LinearGradient
-            colors={["rgba(255, 255, 255, 0.1)", "rgba(0, 0, 0, 0.9)"]}
+          <LinearGradient
+            colors={["rgba(255, 255, 255, 0)", "rgba(0, 0, 0, 1)"]}
             style={styles.gradient}
           >
-          <View style={styles.textView}>
-            <Text style={styles.text}>
-            Let’s discover the incredible adventures awaiting you in Sri Lanka and elevate your journey with StumblePanni.
-            </Text>
-          </View>
+            <View style={styles.textView}>
+              <Text style={styles.text}>
+                Feeling adventurous? Step into a world of quests where every
+                path leads to a new thrill.
+              </Text>
+              <Text style={styles.text}>
+                Collect virtual souvenirs as you conquer challenges and unlock
+                hidden treasures.
+              </Text>
+              <Text style={styles.text}>
+                Ready to make some epic memories?
+              </Text>
+              <MdCatchingPokemon style={styles.icon} />
+            </View>
           </LinearGradient>
         </TouchableWithoutFeedback>
       </ImageBackground>
@@ -50,7 +60,7 @@ const Feature1 = () => {
   );
 };
 
-export default Feature1;
+export default Feature3;
 
 const styles = StyleSheet.create({
   content: {},
@@ -60,16 +70,16 @@ const styles = StyleSheet.create({
   },
   textView: {
     flex: 1,
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
-    paddingTop: "8%",
   },
   text: {
     fontSize: 32,
     color: Colors.pallete.white,
     textAlign: "left",
     fontFamily: "JosefinSansLight",
-    padding: "10%",
+    paddingHorizontal: "10%",
+    paddingVertical: "4%",
   },
   backgroundImage: {
     width: width, // Full screen width
@@ -79,8 +89,12 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-  }, 
+  },
+  icon: {
+    fontSize: 86,
+    color: Colors.pallete.white,
+  },
   gradient: {
-    flex:1,
-  }
+    flex: 1,
+  },
 });

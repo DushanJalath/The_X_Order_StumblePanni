@@ -19,9 +19,9 @@ import {
   
   const { width, height } = Dimensions.get("window");
   
-  const PersonaIntro4 = () => {
+  const PersonaIntro5 = () => {
     const handleTouch = () => {
-      router.push("/onboarding/part2/screen5");
+      router.push("/onboarding/part2/screen6");
     };
     return (
       <View style={styles.container}>
@@ -36,7 +36,7 @@ import {
           >
             <View style={styles.textView}>
               <Text style={styles.text}>
-              Meet Maya, The collective consciousness of Sri Lanka. The embodiment of the paradise.. 
+              ..and your omnipresent guide throughout the StumblePanni Experience!
               </Text>
               <Image
                 source={assets.Persona1}
@@ -50,7 +50,7 @@ import {
     );
   };
   
-  export default PersonaIntro4;
+  export default PersonaIntro5;
   
   const styles = StyleSheet.create({
     content: {},

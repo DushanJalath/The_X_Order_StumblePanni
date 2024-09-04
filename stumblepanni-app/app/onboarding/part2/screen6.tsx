@@ -11,18 +11,22 @@ import {
   import { router } from "expo-router";
   import { TouchableWithoutFeedback } from "react-native";
   import { Colors } from "@/constants/Colors";
+  import AccentButton from "@/components/AccentButton";
   
   const assets = {
-    Persona1: require("../../../assets/images/Characters_png/Maya.png"),
+    Persona: require("../../../assets/images/Characters_png/Maya.png"),
     Background: require("../../../assets/images/Onboarding/pexels-esrageziyor-45760220-11490144.jpg"),
   };
   
   const { width, height } = Dimensions.get("window");
   
-  const PersonaIntro4 = () => {
+  const PersonaIntro = () => {
     const handleTouch = () => {
-      router.push("/onboarding/part2/screen5");
+    //   router.push("/onboarding/part4");
     };
+    const handleLearnMore = () => {
+      router.push("/onboarding/part3");
+    }
     return (
       <View style={styles.container}>
         <ImageBackground
@@ -36,13 +40,14 @@ import {
           >
             <View style={styles.textView}>
               <Text style={styles.text}>
-              Meet Maya, The collective consciousness of Sri Lanka. The embodiment of the paradise.. 
+                So, Shall We Continue ?
               </Text>
-              <Image
-                source={assets.Persona1}
-                resizeMode="contain"
-                style={styles.persona1}
-              />
+              <AccentButton title="Let's Go!" onPress={handleLearnMore} textStyle={styles.button}></AccentButton>
+            <Image
+              source={assets.Persona}
+              resizeMode="contain"
+              style={styles.persona}
+            />
             </View>
           </TouchableWithoutFeedback>
         </ImageBackground>
@@ -50,7 +55,7 @@ import {
     );
   };
   
-  export default PersonaIntro4;
+  export default PersonaIntro;
   
   const styles = StyleSheet.create({
     content: {},
@@ -67,7 +72,7 @@ import {
     text: {
       fontSize: 32,
       color: Colors.pallete.black,
-      textAlign: "left",
+      textAlign: "center",
       fontFamily: "JosefinSansLight",
       padding: "10%",
     },
@@ -80,12 +85,14 @@ import {
     container: {
       flex: 1,
     },
-    persona1: {
+    persona: {
       position: "absolute",
       bottom: 0,
       width: width,
       height: height / 2,
-      zIndex: 10,
     },
+    button: {
+    paddingHorizontal: 50,
+    }
   });
   
