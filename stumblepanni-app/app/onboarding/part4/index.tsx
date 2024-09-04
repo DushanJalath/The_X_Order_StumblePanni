@@ -139,14 +139,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  text: {
-    fontSize: 32,
-    color: Colors.pallete.white,
-    textAlign: "left",
-    fontFamily: "JosefinSansLight",
-    paddingHorizontal: "10%",
-    paddingVertical: "4%",
-  },
   backgroundImage: {
     width: width, // Full screen width
     height: height, // Full screen height
