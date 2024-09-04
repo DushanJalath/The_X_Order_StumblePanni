@@ -76,6 +76,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     // paddingVertical: 15,
     height: 50,
+    borderWidth: 1,
+    borderColor: Colors.pallete.mediumgrey,
   },
 });
 

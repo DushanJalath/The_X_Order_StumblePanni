@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  ScrollView,
 } from "react-native";
 import { Link } from "expo-router";
 
@@ -12,44 +13,54 @@ import AccentButton from "@/components/AccentButton";
 import InputView from "@/components/InputView";
 import Checkbox from "@/components/Checkbox";
 import { Colors } from "@/constants/Colors";
-
-const handelLogin = () => {
-  console.log("Login");
-};
+import { CommonStyles } from "@/constants/CommonStyles";
+import { useRouter } from "expo-router";
 
 const index = () => {
+  const router = useRouter();
+  const handelLogin = () => {
+    const validCredentials = true;
+    if(validCredentials) {
+      router.push("/onboarding");
+    }
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome Back!</Text>
-      <Text style={styles.subtitle}>Log in to your account</Text>
+    <ScrollView contentContainerStyle={CommonStyles.container}>
+      <View style={CommonStyles.centeredContent}>
+        <Text style={styles.title}>Welcome Back!</Text>
+        <Text style={styles.subtitle}>Log in to your account</Text>
 
-      <InputView type="email" placeholder="Email"></InputView>
-      <InputView type="pass" placeholder="Password"></InputView>
+        <InputView type="email" placeholder="Email"></InputView>
+        <InputView type="pass" placeholder="Password"></InputView>
 
-      <View style={styles.optionsContainer}>
-        <View style={styles.rememberMeContainer}>
-          <Checkbox
-            size={18}
-            text="Remember me"
-            onValueChange={() => ({})}
-          ></Checkbox>
-        </View>
-        <TouchableOpacity>
-          <Text style={styles.forgotPassword}>Forgot Password?</Text>
-        </TouchableOpacity>
-      </View>
-
-      <AccentButton onPress={handelLogin} title="Log in"></AccentButton>
-
-      <View style={styles.createAccountContainer}>
-        <Text style={styles.createAccountText}>Don't you have an account?</Text>
-        <Link href="/signup">
+        <View style={styles.optionsContainer}>
+          <View style={styles.rememberMeContainer}>
+            <Checkbox
+              size={18}
+              text="Remember me"
+              onValueChange={() => ({})}
+            ></Checkbox>
+          </View>
           <TouchableOpacity>
-            <Text style={styles.createAccountLink}>Create Account</Text>
+            <Text style={styles.forgotPassword}>Forgot Password?</Text>
           </TouchableOpacity>
-        </Link>
+        </View>
+
+        <AccentButton onPress={handelLogin} title="Log in"></AccentButton>
+
+        <View style={styles.createAccountContainer}>
+          <Text style={styles.createAccountText}>
+            Don't you have an account?
+          </Text>
+          <Link href="/signup">
+            <TouchableOpacity>
+              <Text style={styles.createAccountLink}>Create Account</Text>
+            </TouchableOpacity>
+          </Link>
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -61,6 +72,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     paddingHorizontal: 20,
     justifyContent: "center",
+    alignItems: "center",
+  },
+  centeredContent: {
+    width: "100%",
+    maxWidth: 800,
   },
   createAccountContainer: {
     marginTop: 20,

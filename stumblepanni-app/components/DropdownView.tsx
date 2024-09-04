@@ -55,6 +55,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 15,
     height: 50,
+    borderWidth: 1,
+    borderColor: Colors.pallete.mediumgrey,
   },
   icon: {
     marginRight: 5,
