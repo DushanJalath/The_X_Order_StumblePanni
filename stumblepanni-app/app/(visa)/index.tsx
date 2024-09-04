@@ -8,15 +8,16 @@ import {
 } from "react-native";
 import CustomButton from "@/components/CustomButton";
 import {VisaInstruction} from "@/constants/VisaInstruction";
+import {router} from "expo-router";
 
 
 export default function VisaScreen() {
 	const handleGetStarted = () => {
-		console.log("Start");
+		router.push("visa_process");
 	};
 
 	const handleTrackYourVisa = () => {
-		console.log("Track");
+		router.push("track_visa");
 	};
 
 	return (
@@ -25,7 +26,7 @@ export default function VisaScreen() {
 				What Should You Know When Applying for a Visa ?
 			</Text>
 
-			<ScrollView contentContainerStyle={styles.scroll_container}>
+			<ScrollView contentContainerStyle={styles.scroll_container} >
 				<ExpandableCard
 					title="Visa Categories and fees"
 					content={VisaInstruction.ins_one}

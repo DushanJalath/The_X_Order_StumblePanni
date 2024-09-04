@@ -58,6 +58,9 @@ export default function VisaLayout() {
 				<Stack.Screen name="index" />
 				<Stack.Screen name="visa_process" />
 				<Stack.Screen name="select_category" />
+				<Stack.Screen name="info_personal" />
+				<Stack.Screen name="info_contact" />
+				<Stack.Screen name="info_travel" />
 			</Stack>
 		</>
 	);

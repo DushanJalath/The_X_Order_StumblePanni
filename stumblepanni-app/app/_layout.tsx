@@ -25,6 +25,8 @@ export default function RootLayout() {
 		JosefinSansSemiBold: require("../assets/fonts/JosefinSans-SemiBold.ttf"),
 		JosefinSansThin: require("../assets/fonts/JosefinSans-Thin.ttf"),
 		JosefinSansMedium: require("../assets/fonts/JosefinSans-Medium.ttf"),
+		LatoRegular: require("../assets/fonts/Lato-Regular.ttf"),
+		LatoBold: require("../assets/fonts/Lato-Bold.ttf"),
 	});
 
 	useEffect(() => {
