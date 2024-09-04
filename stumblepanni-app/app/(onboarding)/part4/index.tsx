@@ -18,7 +18,7 @@ import {
   
   const LogoAnimation = () => {
     const handleTouch = () => {
-      router.push("/mainmenu");
+      router.replace("/mainmenu");
     };
     return (
         <ImageBackground

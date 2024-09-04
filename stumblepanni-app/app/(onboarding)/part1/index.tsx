@@ -17,7 +17,7 @@ const assets = {
 
 const Begin = () => {
   const handleTouch = () => {
-    router.push("/onboarding/part1/subtitle");
+    router.push("/part1/subtitle");
   };
 
   const { height, width } = Dimensions.get("window");

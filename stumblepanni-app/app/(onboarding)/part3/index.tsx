@@ -18,7 +18,7 @@ import {
   
   const OnboardingFinal = () => {
     const handleTouch = () => {
-      router.push("/onboarding/part4");
+      router.push("/part4");
     };
     return (
         <ImageBackground

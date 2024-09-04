@@ -13,17 +13,20 @@ import {
   import { Colors } from "@/constants/Colors";
   
   const assets = {
-    Persona1: require("../../../assets/images/Characters_png/Sean.png"),
-    PersonaLeft: require("../../../assets/images/Characters_png/Ronsi.png"),
-    PersonaRight: require("../../../assets/images/Characters_png/manike.png"),
+    Persona1: require("../../../assets/images/Characters_png/Muslim.png"),
+    PersonaLeft: require("../../../assets/images/Characters_png/joris.png"),
+    PersonaRight: require("../../../assets/images/Characters_png/Mitra.png"),
     Background: require("../../../assets/images/Onboarding/pexels-esrageziyor-45760220-11490144.jpg"),
   };
   
   const { width, height } = Dimensions.get("window");
   
-  const PersonaIntro2 = () => {
+  const PersonaIntro = () => {
     const handleTouch = () => {
-      router.push("/onboarding/part2/screen3");
+      router.push("/part4");
+    };
+    const handleLearnMore = () => {
+      router.push("/part3");
     };
     return (
       <View style={styles.container}>
@@ -38,7 +41,7 @@ import {
           >
             <View style={styles.textView}>
               <Text style={styles.text}>
-                There are many of them and everyone knows their stuff. So Ask Away! 
+                They will tell you everything you wanna know, and some more!
               </Text>
               <Image
                 source={assets.Persona1}
@@ -62,7 +65,7 @@ import {
     );
   };
   
-  export default PersonaIntro2;
+  export default PersonaIntro;
   
   const styles = StyleSheet.create({
     content: {},
@@ -94,27 +97,24 @@ import {
     },
     persona1: {
       position: "absolute",
-      bottom: -70,
+      bottom: 0,
       width: width,
       height: height / 2,
+      zIndex: 10,
     },
     personaLeft: {
       position: "absolute",
-      bottom: 0,
+      bottom: -60,
       right: width * 0.35,
       width: width,
       height: height / 2,
-      zIndex: 10,
-
     },
     personaRight: {
       position: "absolute",
-      bottom: 0,
+      bottom: -60,
       left: width * 0.35,
       width: width,
       height: height / 2,
-      zIndex: 10,
-
     },
     button: {
       borderWidth: 2,

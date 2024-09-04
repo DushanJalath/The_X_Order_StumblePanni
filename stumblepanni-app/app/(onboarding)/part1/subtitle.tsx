@@ -18,7 +18,7 @@ const assets = {
 
 const Subtitle = () => {
   const handleTouch = () => {
-    router.push("/onboarding/part2");
+    router.push("/part2");
   };
   return (
       <ImageBackground

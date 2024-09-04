@@ -2,13 +2,11 @@ import React from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   StyleSheet,
   ScrollView,
 } from "react-native";
 import { Link } from "expo-router";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import AccentButton from "@/components/AccentButton";
 import InputView from "@/components/InputView";
@@ -22,7 +20,7 @@ const index = () => {
   const handelLogin = () => {
     const validCredentials = true;
     if(validCredentials) {
-      router.push("/onboarding");
+      router.push("/(onboarding)");
     }
   };
 
@@ -54,7 +52,7 @@ const index = () => {
           <Text style={styles.createAccountText}>
             Don't you have an account?
           </Text>
-          <Link href="/signup">
+          <Link href="/signup" asChild>
             <TouchableOpacity>
               <Text style={styles.createAccountLink}>Create Account</Text>
             </TouchableOpacity>
