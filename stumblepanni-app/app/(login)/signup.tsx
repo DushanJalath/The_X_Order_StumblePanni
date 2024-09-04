@@ -5,25 +5,24 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  ScrollView,
 } from "react-native";
 import { Link } from "expo-router";
 
 import AccentButton from "@/components/AccentButton";
 import InputView from "@/components/InputView";
-import Checkbox from "@/components/Checkbox";
 import DropdownView from "@/components/DropdownView";
 import { Colors } from "@/constants/Colors";
 import { Data } from "@/constants/Data";
-import { ScrollView } from "react-native-gesture-handler";
+import { CommonStyles } from "@/constants/CommonStyles";
 
 const handleRegister = () => {
   console.log("Register");
 };
-
 const signup = () => {
   return (
-    <ScrollView>
-      <View style={styles.container}>
+    <ScrollView contentContainerStyle={CommonStyles.container}>
+      <View style={CommonStyles.centeredContent}>
         <Text style={styles.title}>Register</Text>
         <Text style={styles.subtitle}>Create your new account</Text>
 
@@ -75,12 +74,6 @@ const signup = () => {
 export default signup;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    paddingHorizontal: 20,
-    justifyContent: "center",
-  },
   createAccountContainer: {
     marginBottom: 20,
     flexDirection: "row",
