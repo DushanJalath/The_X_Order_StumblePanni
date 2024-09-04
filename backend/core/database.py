@@ -1,6 +1,10 @@
 from pymongo import MongoClient
+from core.config import settings
 
-client = MongoClient('')
 
-database = client.dbName
+mongo_url = settings.mongodb_uri
+
+client = MongoClient(mongo_url)
+
+database = client.stumblepanni
 
