@@ -2,13 +2,11 @@ import React from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   StyleSheet,
   ScrollView,
 } from "react-native";
 import { Link } from "expo-router";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import AccentButton from "@/components/AccentButton";
 import InputView from "@/components/InputView";
