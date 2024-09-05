@@ -13,14 +13,18 @@ import { Dropdown } from "react-native-element-dropdown";
 const InputView = ({
   type,
   placeholder,
-  validation,
+  onChange,
+  validationFunction,
+  onValidation,
   style,
   textStyle,
 }: {
   type: "default" | "email" | "pass" | "phone" | "dropdown";
   placeholder: string;
+  onChange: (text: string) => void;
   data?: any;
-  validation?: () => {};
+  validationFunction?: (text: string) => boolean;
+  onValidation?: (isValid: boolean) => void;
   style?: any;
   textStyle?: any;
 }) => {
@@ -31,8 +35,15 @@ const InputView = ({
     setSecureTextEntry(!secureTextEntry);
   };
 
-  
-
+  const handleChangeText = (text: string) => {
+    setValue(text);
+    onChange(text);
+    if (onValidation)
+      validationFunction && validationFunction(text)
+        ? onValidation(true)
+        : onValidation(false);
+    // If onValidation is provided, & validationFunction provided, & validationFunction is true, THEN set onValidation to true ELSE set onValidation to false
+  };
 
   const keyboardType = type === "phone" ? "numeric" : "default";
 
@@ -46,7 +57,7 @@ const InputView = ({
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
         value={value}
-        onChangeText={setValue}
+        onChangeText={handleChangeText}
       />
       {type === "pass" && (
         <TouchableOpacity onPress={handleToggleSecureEntry}>

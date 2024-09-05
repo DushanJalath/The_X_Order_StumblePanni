@@ -14,7 +14,7 @@ import { Colors } from "@/constants/Colors";
 import AccentButton from "@/components/AccentButton";
 
 const assets = {
-  Persona: require("../../../assets/images/Characters_png/Muslim.png"),
+  Persona: require("../../../assets/images/Characters_png/Maya_glow_cropped.png"),
   Background: require("../../../assets/images/Onboarding/pexels-esrageziyor-45760220-11490144.jpg"),
 };
 
@@ -22,11 +22,9 @@ const { width, height } = Dimensions.get("window");
 
 const PersonaIntro = () => {
   const handleTouch = () => {
-    router.push("/part3");
+      router.push("/part3");
   };
-  const handleLearnMore = () => {
-    router.push("/part2/screen1");
-  }
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -35,19 +33,20 @@ const PersonaIntro = () => {
         resizeMode="cover"
       >
         <TouchableWithoutFeedback
-          onPress={handleTouch}
           style={CommonStyles.centeredContent}
         >
           <View style={styles.textView}>
-            <Text style={styles.text}>
-              Need help navigating? Meet our Guides throughout your journey!{" "}
-            </Text>
-            <AccentButton title="Learn More" onPress={handleLearnMore} style={styles.button}></AccentButton>
-          <Image
-            source={assets.Persona}
-            resizeMode="contain"
-            style={styles.persona}
-          />
+            <Text style={styles.text}>So, Shall We Continue ?</Text>
+            <AccentButton
+              title="Let's Go!"
+              onPress={handleTouch}
+              textStyle={styles.button}
+            ></AccentButton>
+            <Image
+              source={assets.Persona}
+              resizeMode="cover"
+              style={styles.persona}
+            />
           </View>
         </TouchableWithoutFeedback>
       </ImageBackground>
@@ -68,6 +67,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     paddingTop: "8%",
+    marginBottom: 0,
   },
   text: {
     fontSize: 32,
@@ -88,14 +88,11 @@ const styles = StyleSheet.create({
   persona: {
     position: "absolute",
     bottom: 0,
-    width: width,
-    height: height / 2,
+    width: width * 1.02,
+    height: height / 1.7,
+    zIndex: 10,
   },
   button: {
-    borderWidth: 2,
-    borderColor: Colors.pallete.white,
-    backgroundColor: "transparent",
-    paddingTop: 0,
-    paddingBottom: 5,
-  }
+    paddingHorizontal: 50,
+  },
 });

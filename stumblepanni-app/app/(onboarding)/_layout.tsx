@@ -5,11 +5,11 @@ export default function LoginLayout() {
     return (
         <>
             <StatusBar
-                barStyle="dark-content"
-                backgroundColor="#ffffff"
+                barStyle="default"
+                backgroundColor="transparent"
                 hidden={false}
             />
-            <Stack>
+            <Stack screenOptions={{headerShown: false}}>
                 <Stack.Screen name="index" options={{headerShown: false}}/>
                 <Stack.Screen name="part1/index" options={{headerShown: false}}/>
                 <Stack.Screen name="part1/subtitle" options={{headerShown: false}}/>

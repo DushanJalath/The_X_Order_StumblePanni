@@ -13,9 +13,7 @@ import { TouchableWithoutFeedback } from "react-native";
 import { Colors } from "@/constants/Colors";
 
 const assets = {
-  Persona1: require("../../../assets/images/Characters_png/Muslim.png"),
-  PersonaLeft: require("../../../assets/images/Characters_png/joris.png"),
-  PersonaRight: require("../../../assets/images/Characters_png/Mitra.png"),
+  Persona1: require("../../../assets/images/Characters_png/Maya_Shadow.png"),
   Background: require("../../../assets/images/Onboarding/pexels-esrageziyor-45760220-11490144.jpg"),
 };
 
@@ -89,26 +87,5 @@ const styles = StyleSheet.create({
     width: width,
     height: height / 2,
     zIndex: 10,
-  },
-  personaLeft: {
-    position: "absolute",
-    bottom: -60,
-    right: width * 0.35,
-    width: width,
-    height: height / 2,
-  },
-  personaRight: {
-    position: "absolute",
-    bottom: -60,
-    left: width * 0.35,
-    width: width,
-    height: height / 2,
-  },
-  button: {
-    borderWidth: 2,
-    borderColor: Colors.pallete.white,
-    backgroundColor: "transparent",
-    paddingTop: 0,
-    paddingBottom: 5,
   },
 });

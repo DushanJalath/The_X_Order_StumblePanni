@@ -3,15 +3,46 @@ import React, { useState } from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import { Colors } from "@/constants/Colors";
 
+/**
+ * DropdownView component.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.placeholder - The placeholder text for the dropdown.
+ * @param {Array} props.items - The array of items for the dropdown.
+ * @param {Function} props.onChange - The callback function called when the dropdown value changes.
+ * @param {Function} [props.validationFunction] - The optional validation function to validate the dropdown value.
+ * @param {Function} [props.onValidation] - The optional callback function called after validation. This passing function is called with a boolean result of the validation.
+ * @returns {JSX.Element} The rendered DropdownView component.
+ */
 const DropdownView = ({
   placeholder,
   items,
+  onChange,
+  validationFunction,
+  onValidation,
 }: {
   placeholder: string;
-  items: {label: string, value: string}[];
+  items: { label: string; value: string }[];
+  onChange: (text: string) => void;
+  validationFunction?: (text: string) => boolean;
+  onValidation?: (isValid: boolean) => void;
 }) => {
+  // States
   const [value, setValue] = useState<string | null>(null);
   const [isFocus, setIsFocus] = useState(false);
+
+  const handleOnChange = (item: { label: string; value: string }) => {
+    setValue(item.value);
+    setIsFocus(false);
+    onChange(item.value);
+    if (onValidation)
+      validationFunction && validationFunction(item.value)
+        ? onValidation(true)
+        : onValidation(false);
+    // If onValidation is provided, & validationFunction provided, & validationFunction is true, THEN set onValidation called with true ELSE set onValidation called with false
+  };
+
   return (
     <View style={styles.inputContainer}>
       <Dropdown
@@ -31,10 +62,7 @@ const DropdownView = ({
         value={value}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
-        onChange={(item) => {
-          setValue(item.value);
-          setIsFocus(false);
-        }}
+        onChange={handleOnChange}
       />
     </View>
   );
