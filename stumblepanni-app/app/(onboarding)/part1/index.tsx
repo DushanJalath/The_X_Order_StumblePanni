@@ -12,7 +12,7 @@ import { TouchableWithoutFeedback } from "react-native";
 
 const assets = {
   LogoMain: require("../../../assets/images/Logo/logo-name.png"),
-  Background: require("../../../assets/images/Anime_scenery/Anime_A_panoramic_landscape_of_Sri_Lankas_diverse_scenery_incl_0.jpg"),
+  Background: require("../../../assets/images/Skyline/Ella.jpg"),
 };
 
 const Begin = () => {
@@ -31,21 +31,21 @@ const Begin = () => {
 
   return (
     <ImageBackground
-          source={assets.Background}
-          style={CommonStyles.containerBackgroundImage}
-        >
+      source={assets.Background}
+      style={CommonStyles.containerBackgroundImage}
+    >
       <TouchableWithoutFeedback
         onPress={handleTouch}
         style={CommonStyles.centeredContent}
       >
-          <View style={CommonStyles.centeredContent}>
-            <Image
-              source={assets.LogoMain}
-              style={StyleSheet.flatten([dynamicStyles.logo, styles.logo])}
-            />
-          </View>
+        <View style={CommonStyles.centeredContent}>
+          <Image
+            source={assets.LogoMain}
+            style={StyleSheet.flatten([dynamicStyles.logo, styles.logo])}
+          />
+        </View>
       </TouchableWithoutFeedback>
-        </ImageBackground>
+    </ImageBackground>
   );
 };
 

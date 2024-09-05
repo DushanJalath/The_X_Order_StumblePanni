@@ -1,2 +1,4 @@
 python-dotenv
 pydantic-settings
+bcrypt==3.2.0
+

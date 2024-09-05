@@ -3,30 +3,27 @@ import {
   View,
   Text,
   ImageBackground,
-  Image,
   Dimensions,
 } from "react-native";
 import React from "react";
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { LinearGradient } from "expo-linear-gradient";
+
 import { CommonStyles } from "@/constants/CommonStyles";
 import { router } from "expo-router";
 import { TouchableWithoutFeedback } from "react-native";
 import { Colors } from "@/constants/Colors";
-import AccentButton from "@/components/AccentButton";
 
 const assets = {
-  Persona: require("../../../assets/images/Characters_png/Muslim.png"),
-  Background: require("../../../assets/images/Onboarding/pexels-esrageziyor-45760220-11490144.jpg"),
+  Background: require("../../../assets/images/Onboarding/pexels-marina-akimova-2143804-3845057.jpg"),
 };
 
 const { width, height } = Dimensions.get("window");
 
-const PersonaIntro = () => {
+const Feature2 = () => {
   const handleTouch = () => {
-    router.push("/part3");
+    router.push("/part3/screen2");
   };
-  const handleLearnMore = () => {
-    router.push("/part2/screen1");
-  }
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -38,24 +35,25 @@ const PersonaIntro = () => {
           onPress={handleTouch}
           style={CommonStyles.centeredContent}
         >
-          <View style={styles.textView}>
-            <Text style={styles.text}>
-              Need help navigating? Meet our Guides throughout your journey!{" "}
-            </Text>
-            <AccentButton title="Learn More" onPress={handleLearnMore} style={styles.button}></AccentButton>
-          <Image
-            source={assets.Persona}
-            resizeMode="contain"
-            style={styles.persona}
-          />
-          </View>
+          <LinearGradient
+            colors={["rgba(255, 255, 255, 0.1)", "rgba(0, 0, 0, 0.9)"]}
+            style={styles.gradient}
+          >
+            <View style={styles.textView}>
+              <Text style={styles.text}>
+                Get your visa hassle-free! StumblePanni handles your visa
+                application and approval—all in one place
+              </Text>
+              <MaterialCommunityIcons name="airplane" style={styles.icon}/>
+            </View>
+          </LinearGradient>
         </TouchableWithoutFeedback>
       </ImageBackground>
     </View>
   );
 };
 
-export default PersonaIntro;
+export default Feature2;
 
 const styles = StyleSheet.create({
   content: {},
@@ -65,14 +63,13 @@ const styles = StyleSheet.create({
   },
   textView: {
     flex: 1,
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
-    paddingTop: "8%",
   },
   text: {
     fontSize: 32,
-    color: Colors.pallete.black,
-    textAlign: "center",
+    color: Colors.pallete.white,
+    textAlign: "left",
     fontFamily: "JosefinSansLight",
     padding: "10%",
   },
@@ -85,17 +82,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  persona: {
-    position: "absolute",
-    bottom: 0,
-    width: width,
-    height: height / 2,
+  icon: {
+    fontSize: 50,
+    color: Colors.pallete.white,
   },
-  button: {
-    borderWidth: 2,
-    borderColor: Colors.pallete.white,
-    backgroundColor: "transparent",
-    paddingTop: 0,
-    paddingBottom: 5,
-  }
+  gradient: {
+    flex: 1,
+  },
 });

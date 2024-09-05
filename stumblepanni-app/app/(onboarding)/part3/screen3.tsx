@@ -3,25 +3,26 @@ import {
   View,
   Text,
   ImageBackground,
-  Image,
   Dimensions,
 } from "react-native";
 import React from "react";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { LinearGradient } from "expo-linear-gradient";
+
 import { CommonStyles } from "@/constants/CommonStyles";
 import { router } from "expo-router";
 import { TouchableWithoutFeedback } from "react-native";
 import { Colors } from "@/constants/Colors";
 
 const assets = {
-  Persona1: require("../../../assets/images/Characters_png/Maya.png"),
-  Background: require("../../../assets/images/Onboarding/pexels-esrageziyor-45760220-11490144.jpg"),
+  Background: require("../../../assets/images/Onboarding/pexels-namal-siriwardana-162265496-26923471.jpg"),
 };
 
 const { width, height } = Dimensions.get("window");
 
-const PersonaIntro4 = () => {
+const Feature3 = () => {
   const handleTouch = () => {
-    router.push("/part2/screen5");
+    router.push("/part4");
   };
   return (
     <View style={styles.container}>
@@ -34,23 +35,30 @@ const PersonaIntro4 = () => {
           onPress={handleTouch}
           style={CommonStyles.centeredContent}
         >
-          <View style={styles.textView}>
-            <Text style={styles.text}>
-            Meet Maya, The collective consciousness of Sri Lanka. The embodiment of the paradise.. 
-            </Text>
-            <Image
-              source={assets.Persona1}
-              resizeMode="contain"
-              style={styles.persona1}
-            />
-          </View>
+          <LinearGradient
+            colors={["rgba(255, 255, 255, 0)", "rgba(0, 0, 0, 1)"]}
+            style={styles.gradient}
+          >
+            <View style={styles.textView}>
+              <Text style={styles.text}>
+                Feeling adventurous? Step into a world of quests where every
+                path leads to a new thrill.
+              </Text>
+              <Text style={styles.text}>
+                Collect virtual souvenirs as you conquer challenges and unlock
+                hidden treasures.
+              </Text>
+              <Text style={styles.text}>Ready to make some epic memories?</Text>
+              <MaterialIcons name="catching-pokemon" style={styles.icon} />
+            </View>
+          </LinearGradient>
         </TouchableWithoutFeedback>
       </ImageBackground>
     </View>
   );
 };
 
-export default PersonaIntro4;
+export default Feature3;
 
 const styles = StyleSheet.create({
   content: {},
@@ -60,16 +68,16 @@ const styles = StyleSheet.create({
   },
   textView: {
     flex: 1,
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
-    paddingTop: "8%",
   },
   text: {
     fontSize: 32,
-    color: Colors.pallete.black,
+    color: Colors.pallete.white,
     textAlign: "left",
     fontFamily: "JosefinSansLight",
-    padding: "10%",
+    paddingHorizontal: 30,
+    paddingVertical: "4%",
   },
   backgroundImage: {
     width: width, // Full screen width
@@ -80,11 +88,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  persona1: {
-    position: "absolute",
-    bottom: 0,
-    width: width,
-    height: height / 2,
-    zIndex: 10,
+  icon: {
+    fontSize: 50,
+    color: Colors.pallete.white,
+  },
+  gradient: {
+    flex: 1,
   },
 });
