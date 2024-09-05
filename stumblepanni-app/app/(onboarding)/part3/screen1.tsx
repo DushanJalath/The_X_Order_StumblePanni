@@ -6,7 +6,6 @@ import {
   Dimensions,
 } from "react-native";
 import React from "react";
-import { PiAirplaneTiltLight } from "react-icons/pi";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -45,7 +44,6 @@ const Feature2 = () => {
                 Get your visa hassle-free! StumblePanni handles your visa
                 application and approval—all in one place
               </Text>
-              {/* <PiAirplaneTiltLight style={styles.icon} /> */}
               <MaterialCommunityIcons name="airplane" style={styles.icon}/>
             </View>
           </LinearGradient>

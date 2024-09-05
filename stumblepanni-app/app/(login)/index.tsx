@@ -41,7 +41,7 @@ const index = () => {
     // console.log("Valid Credentials: ", usernameVerify && passwordVerify);
     const validCredentials = usernameVerify && passwordVerify;
     if (validCredentials) {
-      router.push("/onboarding");
+      router.push("/part1");
     } else {
       alert("Invalid Credentials");
     }

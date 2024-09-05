@@ -22,7 +22,7 @@ const { width, height } = Dimensions.get("window");
 
 const PersonaIntro = () => {
   const handleTouch = () => {
-    router.push("/part4");
+    router.push("/part3");
   };
   const handleLearnMore = () => {
     router.push("/part2/screen1");

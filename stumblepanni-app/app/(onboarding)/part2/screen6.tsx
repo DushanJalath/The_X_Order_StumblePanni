@@ -22,11 +22,9 @@ const { width, height } = Dimensions.get("window");
 
 const PersonaIntro = () => {
   const handleTouch = () => {
-    //   router.push("/onboarding/part4");
+      router.push("/part3");
   };
-  const handleLearnMore = () => {
-    router.push("/part3");
-  };
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -35,14 +33,13 @@ const PersonaIntro = () => {
         resizeMode="cover"
       >
         <TouchableWithoutFeedback
-          onPress={handleTouch}
           style={CommonStyles.centeredContent}
         >
           <View style={styles.textView}>
             <Text style={styles.text}>So, Shall We Continue ?</Text>
             <AccentButton
               title="Let's Go!"
-              onPress={handleLearnMore}
+              onPress={handleTouch}
               textStyle={styles.button}
             ></AccentButton>
             <Image

@@ -6,8 +6,7 @@ import {
   Dimensions,
 } from "react-native";
 import React from "react";
-import { LuSnowflake } from "react-icons/lu";
-import FontAwesome from '@expo/vector-icons/FontAwesome';
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { CommonStyles } from "@/constants/CommonStyles";
@@ -47,7 +46,7 @@ const Feature3 = () => {
                 and culture
               </Text>
               {/* <LuSnowflake style={styles.icon} /> */}
-              <FontAwesome name="snowflake-o" style={styles.icon}/>
+              <FontAwesome name="snowflake-o" style={styles.icon} />
             </View>
           </LinearGradient>
         </TouchableWithoutFeedback>

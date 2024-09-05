@@ -6,7 +6,6 @@ import {
   Dimensions,
 } from "react-native";
 import React from "react";
-import { MdCatchingPokemon } from "react-icons/md";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { LinearGradient } from "expo-linear-gradient";
 
