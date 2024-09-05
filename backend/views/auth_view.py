@@ -3,7 +3,9 @@ from fastapi.security import OAuth2PasswordRequestForm
 from schemas.user_schema import UserCreateSchema
 from schemas.token_schema import Token
 from services.auth_service import AuthService
-from repositories.user_repository import UserRepository
+from services.user_service import UserService
+
+
 
 router = APIRouter()
 
@@ -11,8 +13,8 @@ router = APIRouter()
 def register_user(user_data: UserCreateSchema):
     hashed_password = AuthService.get_password_hash(user_data.password)
     user_data.password = hashed_password
-    UserRepository.create_user(user_data.dict())
-    return {"message": "User registered successfully"}
+    user_id = UserService.create_user(user_data.dict())
+    return {"message": "{user_id}User registered successfully"}
 
 @router.post("/login", response_model=Token)
 def login_user(form_data: OAuth2PasswordRequestForm = Depends()):
