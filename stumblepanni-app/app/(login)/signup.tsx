@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   StyleSheet,
   ScrollView,
 } from "react-native";
-import { Link } from "expo-router";
+import { useRouter } from "expo-router";
 
 import AccentButton from "@/components/AccentButton";
 import InputView from "@/components/InputView";
@@ -16,12 +15,24 @@ import { Colors } from "@/constants/Colors";
 import { Data } from "@/constants/Data";
 import { CommonStyles } from "@/constants/CommonStyles";
 
-const handleRegister = () => {
-  console.log("Register");
-};
 const signup = () => {
+  const router = useRouter();
+  const handleRegister = () => {
+    console.log("Register");
+    router.push("/");
+  };
+  const handleTermsAndConditions = () => {
+    router.push("/maintenance");
+  };
+  const handlePrivacyPolicy = () => {
+    router.push("/maintenance");
+  };
+  const handleLogin = () => {
+    router.push("/");
+  };
+
   return (
-    <ScrollView contentContainerStyle={CommonStyles.container}>
+    <ScrollView contentContainerStyle={[CommonStyles.container, styles.container]}>
       <View style={CommonStyles.centeredContent}>
         <Text style={styles.title}>Register</Text>
         <Text style={styles.subtitle}>Create your new account</Text>
@@ -37,19 +48,15 @@ const signup = () => {
             <Text style={styles.createAccountText}>
               By signing up you agree to our {}
             </Text>
-            <Link href="/">
-              <TouchableOpacity>
-                <Text style={styles.createAccountLink}>
-                  Terms & Conditions {}
-                </Text>
-              </TouchableOpacity>
-            </Link>
+            <TouchableOpacity onPress={handleTermsAndConditions}>
+              <Text style={styles.createAccountLink}>
+                Terms & Conditions {}
+              </Text>
+            </TouchableOpacity>
             <Text style={styles.createAccountText}>and {}</Text>
-            <Link href="/">
-              <TouchableOpacity>
-                <Text style={styles.createAccountLink}>Privacy Policy</Text>
-              </TouchableOpacity>
-            </Link>
+            <TouchableOpacity onPress={handlePrivacyPolicy}>
+              <Text style={styles.createAccountLink}>Privacy Policy</Text>
+            </TouchableOpacity>
           </Text>
         </View>
         <View style={styles.registerBtn}>
@@ -60,11 +67,9 @@ const signup = () => {
         </View>
         <View style={styles.createAccountContainer}>
           <Text style={styles.createAccountText}>Already have an account?</Text>
-          <Link href="/">
-            <TouchableOpacity>
-              <Text style={styles.createAccountLink}>Log in</Text>
-            </TouchableOpacity>
-          </Link>
+          <TouchableOpacity onPress={handleLogin}>
+            <Text style={styles.createAccountLink}>Log in</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>
@@ -74,6 +79,9 @@ const signup = () => {
 export default signup;
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#fff",
+  },
   createAccountContainer: {
     marginBottom: 20,
     flexDirection: "row",

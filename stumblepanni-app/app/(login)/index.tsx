@@ -25,9 +25,15 @@ const index = () => {
       router.push("/onboarding");
     }
   };
+  const handleSignup = () => {
+    router.push("/signup");
+  };
+  const handleForgotPassword = () => { 
+    router.push("/maintenance");
+  };
 
   return (
-    <ScrollView contentContainerStyle={CommonStyles.container}>
+    <ScrollView contentContainerStyle={[CommonStyles.container, styles.container]}>
       <View style={CommonStyles.centeredContent}>
         <Text style={styles.title}>Welcome Back!</Text>
         <Text style={styles.subtitle}>Log in to your account</Text>
@@ -43,7 +49,7 @@ const index = () => {
               onValueChange={() => ({})}
             ></Checkbox>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleForgotPassword}>
             <Text style={styles.forgotPassword}>Forgot Password?</Text>
           </TouchableOpacity>
         </View>
@@ -54,11 +60,9 @@ const index = () => {
           <Text style={styles.createAccountText}>
             Don't you have an account?
           </Text>
-          <Link href="/signup">
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handleSignup}>
               <Text style={styles.createAccountLink}>Create Account</Text>
             </TouchableOpacity>
-          </Link>
         </View>
       </View>
     </ScrollView>
@@ -69,15 +73,7 @@ export default index;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#fff",
-    paddingHorizontal: 20,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  centeredContent: {
-    width: "100%",
-    maxWidth: 800,
   },
   createAccountContainer: {
     marginTop: 20,

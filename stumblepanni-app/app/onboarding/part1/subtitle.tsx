@@ -13,7 +13,7 @@ import { Colors } from "@/constants/Colors";
 
 const assets = {
   LogoMain: require("../../../assets/images/Logo/logo-name.png"),
-  Background: require("../../../assets/images/Anime_scenery/Anime_A_panoramic_landscape_of_Sri_Lankas_diverse_scenery_incl_0.jpg"),
+  Background: require("../../../assets/images/Skyline/Ella.jpg"),
 };
 
 const Subtitle = () => {

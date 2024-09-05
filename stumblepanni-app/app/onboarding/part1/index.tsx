@@ -9,15 +9,31 @@ import React from "react";
 import { CommonStyles } from "@/constants/CommonStyles";
 import { router } from "expo-router";
 import { TouchableWithoutFeedback } from "react-native";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  runOnJS,
+} from "react-native-reanimated";
 
 const assets = {
   LogoMain: require("../../../assets/images/Logo/logo-name.png"),
-  Background: require("../../../assets/images/Anime_scenery/Anime_A_panoramic_landscape_of_Sri_Lankas_diverse_scenery_incl_0.jpg"),
+  Background: require("../../../assets/images/Skyline/Ella.jpg"),
 };
 
 const Begin = () => {
+  const transitionOpacity = useSharedValue(1);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      opacity: transitionOpacity.value,
+    };
+  });
+
   const handleTouch = () => {
-    router.push("/onboarding/part1/subtitle");
+    transitionOpacity.value = withTiming(0, { duration: 500 }, () => {
+      runOnJS(router.push)("/onboarding/part1/subtitle");
+    });
   };
 
   const { height, width } = Dimensions.get("window");
@@ -31,21 +47,21 @@ const Begin = () => {
 
   return (
     <ImageBackground
-          source={assets.Background}
-          style={CommonStyles.containerBackgroundImage}
-        >
+      source={assets.Background}
+      style={CommonStyles.containerBackgroundImage}
+    >
       <TouchableWithoutFeedback
         onPress={handleTouch}
         style={CommonStyles.centeredContent}
       >
-          <View style={CommonStyles.centeredContent}>
-            <Image
-              source={assets.LogoMain}
-              style={StyleSheet.flatten([dynamicStyles.logo, styles.logo])}
-            />
-          </View>
+        <View style={CommonStyles.centeredContent}>
+          <Image
+            source={assets.LogoMain}
+            style={StyleSheet.flatten([dynamicStyles.logo, styles.logo])}
+          />
+        </View>
       </TouchableWithoutFeedback>
-        </ImageBackground>
+    </ImageBackground>
   );
 };
 
