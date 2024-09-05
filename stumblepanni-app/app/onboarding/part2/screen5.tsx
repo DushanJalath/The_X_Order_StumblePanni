@@ -13,7 +13,7 @@ import {
   import { Colors } from "@/constants/Colors";
   
   const assets = {
-    Persona1: require("../../../assets/images/Characters_png/Maya.png"),
+    Persona1: require("../../../assets/images/Characters_png/Maya_glow_cropped.png"),
     Background: require("../../../assets/images/Onboarding/pexels-esrageziyor-45760220-11490144.jpg"),
   };
   
@@ -40,7 +40,7 @@ import {
               </Text>
               <Image
                 source={assets.Persona1}
-                resizeMode="contain"
+                resizeMode="cover"
                 style={styles.persona1}
               />
             </View>
@@ -83,8 +83,8 @@ import {
     persona1: {
       position: "absolute",
       bottom: 0,
-      width: width,
-      height: height / 2,
+      width: width * 1.02,
+      height: height / 1.7,
       zIndex: 10,
     },
   });

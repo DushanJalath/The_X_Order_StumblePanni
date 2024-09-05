@@ -3,7 +3,7 @@ import React from 'react'
 
 const mainmenu = () => {
   return (
-    <View>
+    <View style={{backgroundColor: "#fff"}}>
       <Text>mainmenu</Text>
     </View>
   )

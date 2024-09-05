@@ -6,13 +6,13 @@ import {
   Dimensions,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import { MdCatchingPokemon } from "react-icons/md";
 import { LinearGradient } from "expo-linear-gradient";
 import Animated, {
   useSharedValue,
   withTiming,
   useAnimatedStyle,
   withDelay,
+  runOnJS,
 } from "react-native-reanimated";
 
 import { CommonStyles } from "@/constants/CommonStyles";
@@ -66,7 +66,7 @@ const OnboardingClosure = () => {
     );
     LogoNameOpacity.value = withDelay(delayDuration, withTiming(1, { duration: 1000 }, () => {
       // Enable touch after animation completes
-      setIsTouchable(true);
+      runOnJS(setIsTouchable)(true);
     }));
   }, []);
 

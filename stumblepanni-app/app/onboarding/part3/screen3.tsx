@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import React from "react";
 import { MdCatchingPokemon } from "react-icons/md";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { CommonStyles } from "@/constants/CommonStyles";
@@ -48,10 +49,8 @@ const Feature3 = () => {
                 Collect virtual souvenirs as you conquer challenges and unlock
                 hidden treasures.
               </Text>
-              <Text style={styles.text}>
-                Ready to make some epic memories?
-              </Text>
-              <MdCatchingPokemon style={styles.icon} />
+              <Text style={styles.text}>Ready to make some epic memories?</Text>
+              <MaterialIcons name="catching-pokemon" style={styles.icon} />
             </View>
           </LinearGradient>
         </TouchableWithoutFeedback>
@@ -78,7 +77,7 @@ const styles = StyleSheet.create({
     color: Colors.pallete.white,
     textAlign: "left",
     fontFamily: "JosefinSansLight",
-    paddingHorizontal: "10%",
+    paddingHorizontal: 30,
     paddingVertical: "4%",
   },
   backgroundImage: {
@@ -91,7 +90,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   icon: {
-    fontSize: 86,
+    fontSize: 50,
     color: Colors.pallete.white,
   },
   gradient: {
