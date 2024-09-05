@@ -6,11 +6,11 @@ export default function VisaLayout() {
 	const router = useRouter();
 
 	const navigateToHome = () => {
-		router.replace("/mainmenu"); // This will navigate to the root app/index
+		router.replace("/mainmenu");
 	};
 
 	const navigateBack = () => {
-		router.back(); // This will navigate back to the previous route
+		router.back();
 	};
 
 	return (
@@ -53,14 +53,12 @@ export default function VisaLayout() {
 						</TouchableOpacity>
 					),
 					headerShadowVisible: false,
+					animation: "slide_from_right",
 				}}
 			>
 				<Stack.Screen name="index" />
 				<Stack.Screen name="visa_process" />
-				<Stack.Screen name="select_category" />
-				<Stack.Screen name="info_personal" />
-				<Stack.Screen name="info_contact" />
-				<Stack.Screen name="info_travel" />
+				<Stack.Screen name="(apply)" options={{headerShown:false}} />
 			</Stack>
 		</>
 	);

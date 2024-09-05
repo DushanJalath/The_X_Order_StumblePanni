@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { Colors } from '@/constants/Colors';
-import {AntDesign, Ionicons} from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 interface FormFieldProps {
     value: string;
     onChangeText: (text: string) => void;
     placeholder: string;
-    isValid: boolean;
-    hint: string; // New prop for the hint
+    isValid?: boolean; // Make isValid optional
+    hint: string;
     keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad';
 }
 
-const FormField: React.FC<FormFieldProps> = ({ value, onChangeText, placeholder, isValid, hint, keyboardType = 'default' }) => {
+const FormField: React.FC<FormFieldProps> = ({ value, onChangeText, placeholder, isValid = true, hint, keyboardType = 'default' }) => {
     const [isHintVisible, setHintVisible] = useState(false);
 
     const toggleHintVisibility = () => {
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         borderColor: Colors.pallete.mediumgrey,
         borderWidth: 1,
-        height:48
+        height: 48,
     },
     inputError: {
         borderColor: 'red',
