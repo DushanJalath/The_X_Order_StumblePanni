@@ -5,3 +5,5 @@ visa-officer-dashboard/node_modules
 backend/.env
 .idea
 node_modules
+backend/.env
+**/__pycache__/
