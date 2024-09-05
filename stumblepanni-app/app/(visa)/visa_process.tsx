@@ -6,7 +6,7 @@ import {router} from "expo-router";
 
 const VisaApplicationProcess = () => {
     const handleLetsGo= () => {
-        router.push("select_category");
+        router.push("/select_category");
     }
     return (
         <View style={styles.container}>
