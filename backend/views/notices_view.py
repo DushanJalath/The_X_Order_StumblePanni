@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from models.user_model import User
+from models.user_model import UserModel
 from schemas.user_schema import UserRiskCheckResponse, UserRiskDetailsResponse
 from services.interpol_service import (
     check_user_in_notices,
@@ -20,7 +20,7 @@ async def check_users(user_ids: List[str]):
     
     for user_id in user_ids:
         # Get the user details from your database
-        user = await User.find_one({"user_id": user_id})
+        user = await UserModel.find_one({"user_id": user_id})
         
         if not user:
             raise HTTPException(status_code=404, detail=f"User {user_id} not found")
@@ -41,7 +41,7 @@ async def get_user_risky_details(user_id: str):
     """
     Get the risky user's original image, Interpol notice images, and details.
     """
-    user = await User.find_one({"user_id": user_id})
+    user = await UserModel.find_one({"user_id": user_id})
     
     if not user:
         raise HTTPException(status_code=404, detail=f"User {user_id} not found")
