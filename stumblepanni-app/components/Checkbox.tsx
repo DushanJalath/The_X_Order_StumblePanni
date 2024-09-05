@@ -10,7 +10,7 @@ const Checkbox = ({
   textStyle,
 }: {
   size?: number;
-  onValueChange?: () => {};
+  onValueChange: (check: boolean) => void;
   text?: string;
   textStyle?: any;
 }) => {
@@ -19,9 +19,7 @@ const Checkbox = ({
   const handlePress = () => {
     const newValue = !isChecked;
     setIsChecked(newValue);
-    if (onValueChange) {
-      onValueChange();
-    }
+    onValueChange(newValue);
   };
 
   return (

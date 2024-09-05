@@ -2,55 +2,103 @@ import React from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   StyleSheet,
+  ScrollView,
 } from "react-native";
 import { Link } from "expo-router";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import AccentButton from "@/components/AccentButton";
 import InputView from "@/components/InputView";
 import Checkbox from "@/components/Checkbox";
 import { Colors } from "@/constants/Colors";
-
-const handelLogin = () => {
-  console.log("Login");
-};
+import { CommonStyles } from "@/constants/CommonStyles";
+import { useRouter } from "expo-router";
 
 const index = () => {
+  // states, validations
+  const [username, setUsername] = React.useState("");
+  const [usernameVerify, setUsernameVerify] = React.useState(false);
+  const [password, setPassword] = React.useState("");
+  const [passwordVerify, setPasswordVerify] = React.useState(false);
+  const [rememberMe, setRememberMe] = React.useState(false);
+
+  const usernameValidation = (text: string) => {
+    return text.length > 0;
+  };
+  const passwordValidation = (text: string) => {
+    return text.length > 0;
+  };
+
+  // routing
+  const router = useRouter();
+  const handelLogin = () => {
+    // console.log("Username: ", username);
+    // console.log("Password: ", password);
+    // console.log("Remember Me: ", rememberMe);
+    // console.log("Username Verify: ", usernameVerify);
+    // console.log("Password Verify: ", passwordVerify);
+    // console.log("Valid Credentials: ", usernameVerify && passwordVerify);
+    const validCredentials = usernameVerify && passwordVerify;
+    if (validCredentials) {
+      router.push("/part1");
+    } else {
+      alert("Invalid Credentials");
+    }
+  };
+  const handleSignup = () => {
+    router.push("/signup");
+  };
+  const handleForgotPassword = () => {
+    router.push("/maintenance");
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome Back!</Text>
-      <Text style={styles.subtitle}>Log in to your account</Text>
+    <ScrollView
+      contentContainerStyle={[CommonStyles.container, styles.container]}
+    >
+      <View style={CommonStyles.centeredContent}>
+        <Text style={styles.title}>Welcome Back!</Text>
+        <Text style={styles.subtitle}>Log in to your account</Text>
+        <InputView
+          type="email"
+          placeholder="Email"
+          onChange={setUsername}
+          validationFunction={usernameValidation}
+          onValidation={setUsernameVerify}
+        ></InputView>
+        {/* Just passing the setting fn. variable is set by the component itself */}
+        <InputView
+          type="pass"
+          placeholder="Password"
+          onChange={setPassword}
+          validationFunction={passwordValidation}
+          onValidation={setPasswordVerify}
+        ></InputView>
 
-      <InputView type="email" placeholder="Email"></InputView>
-      <InputView type="pass" placeholder="Password"></InputView>
-
-      <View style={styles.optionsContainer}>
-        <View style={styles.rememberMeContainer}>
-          <Checkbox
-            size={18}
-            text="Remember me"
-            onValueChange={() => ({})}
-          ></Checkbox>
+        <View style={styles.optionsContainer}>
+          <View style={styles.rememberMeContainer}>
+            <Checkbox
+              size={18}
+              text="Remember me"
+              onValueChange={setRememberMe}
+            ></Checkbox>
+          </View>
+          <TouchableOpacity onPress={handleForgotPassword}>
+            <Text style={styles.forgotPassword}>Forgot Password?</Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity>
-          <Text style={styles.forgotPassword}>Forgot Password?</Text>
-        </TouchableOpacity>
-      </View>
-
-      <AccentButton onPress={handelLogin} title="Log in"></AccentButton>
-
-      <View style={styles.createAccountContainer}>
-        <Text style={styles.createAccountText}>Don't you have an account?</Text>
-        <Link href="/signup">
-          <TouchableOpacity>
+        <AccentButton onPress={handelLogin} title="Log in"></AccentButton>
+        <View style={styles.createAccountContainer}>
+          <Text style={styles.createAccountText}>
+            Don't you have an account?
+          </Text>
+          <TouchableOpacity onPress={handleSignup}>
             <Text style={styles.createAccountLink}>Create Account</Text>
           </TouchableOpacity>
-        </Link>
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -58,10 +106,7 @@ export default index;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#fff",
-    paddingHorizontal: 20,
-    justifyContent: "center",
   },
   createAccountContainer: {
     marginTop: 20,
