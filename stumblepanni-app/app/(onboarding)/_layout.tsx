@@ -18,6 +18,8 @@ export default function LoginLayout() {
                 <Stack.Screen name="part2/screen2" options={{headerShown: false}}/>
                 <Stack.Screen name="part2/screen3" options={{headerShown: false}}/>
                 <Stack.Screen name="part2/screen4" options={{headerShown: false}}/>
+                <Stack.Screen name="part2/screen5" options={{headerShown: false}}/>
+                <Stack.Screen name="part2/screen6" options={{headerShown: false}}/>
                 <Stack.Screen name="part3/index" options={{headerShown: false}}/>
                 <Stack.Screen name="part4/index" options={{headerShown: false}}/>
             </Stack>
