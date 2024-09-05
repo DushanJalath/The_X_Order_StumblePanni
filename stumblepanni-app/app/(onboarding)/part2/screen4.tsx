@@ -23,7 +23,7 @@ import {
   
   const PersonaIntro = () => {
     const handleTouch = () => {
-      router.push("/Screen5");
+      router.push("/part2/screen5");
     };
     const handleLearnMore = () => {
       router.push("/part3");

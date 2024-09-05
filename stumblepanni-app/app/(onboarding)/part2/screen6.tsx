@@ -25,7 +25,7 @@ const PersonaIntro = () => {
     //   router.push("/onboarding/part4");
   };
   const handleLearnMore = () => {
-    router.push("/onboarding/part3");
+    router.push("/part3");
   };
   return (
     <View style={styles.container}>

@@ -23,7 +23,7 @@ const { width, height } = Dimensions.get("window");
 
 const Feature2 = () => {
   const handleTouch = () => {
-    router.push("/onboarding/part3/screen2");
+    router.push("/part3/screen2");
   };
   return (
     <View style={styles.container}>

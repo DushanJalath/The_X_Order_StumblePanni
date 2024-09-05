@@ -21,7 +21,7 @@ import {
   
   const PersonaIntro5 = () => {
     const handleTouch = () => {
-      router.push("/onboarding/part2/screen6");
+      router.push("/part2/screen6");
     };
     return (
       <View style={styles.container}>

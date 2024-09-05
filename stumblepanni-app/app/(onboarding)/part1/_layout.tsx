@@ -32,7 +32,7 @@ export default function OnboadingPart1Layout() {
       <StatusBar
         barStyle="dark-content"
         backgroundColor="#ffffff"
-        hidden={false}
+        hidden={true}
       />
 
       <Stack
