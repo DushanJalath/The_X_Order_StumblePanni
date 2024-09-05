@@ -16,10 +16,54 @@ import { Data } from "@/constants/Data";
 import { CommonStyles } from "@/constants/CommonStyles";
 
 const signup = () => {
+  // states and validations
+  const [username, setUsername] = useState("");
+  const [usernameVerify, setUsernameVerify] = useState(false);
+  const [password, setPassword] = useState("");
+  const [passwordVerify, setPasswordVerify] = useState(false);
+  const [email, setEmail] = useState("");
+  const [emailVerify, setEmailVerify] = useState(false);
+  const [phone, setPhone] = useState("");
+  const [phoneVerify, setPhoneVerify] = useState(false);
+  const [country, setCountry] = useState("");
+  const [countryVerify, setCountryVerify] = useState(false);
+
+  const usernameValidation = (text: string) => {
+    return text.length > 5;
+  };
+  const passwordValidation = (text: string) => {
+    // Minimum eight characters, at least one uppercase letter, one lowercase letter and one number
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    return passwordRegex.test(text);
+  };
+  const emailValidation = (text: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(text);
+  };
+  const phoneValidation = (text: string) => {
+    const phoneRegex = /^\+?[1-9]\d{1,14}$/;
+    return phoneRegex.test(phone);
+  };
+  const countryValidation = (text: string) => {
+    return text.length > 0;
+  };
+
+  // routing
   const router = useRouter();
   const handleRegister = () => {
-    console.log("Register");
-    router.push("/");
+    const validDetails =
+      usernameVerify &&
+      passwordVerify &&
+      emailVerify &&
+      phoneVerify &&
+      countryVerify;
+    // console.log("Valid country: ", countryVerify);
+    // console.log("Country: ", country);
+    if (validDetails) {
+      router.push("/");
+    } else {
+      alert("Please fill all fields correctly");
+    }
   };
   const handleTermsAndConditions = () => {
     router.push("/maintenance");
@@ -32,16 +76,48 @@ const signup = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={[CommonStyles.container, styles.container]}>
+    <ScrollView
+      contentContainerStyle={[CommonStyles.container, styles.container]}
+    >
       <View style={CommonStyles.centeredContent}>
         <Text style={styles.title}>Register</Text>
         <Text style={styles.subtitle}>Create your new account</Text>
 
-        <InputView type="default" placeholder="Name"></InputView>
-        <InputView type="email" placeholder="Email"></InputView>
-        <InputView type="phone" placeholder="Phone"></InputView>
-        <InputView type="pass" placeholder="Password"></InputView>
-        <DropdownView placeholder="Select Country" items={Data.countries} />
+        <InputView
+          type="default"
+          placeholder="Name"
+          onChange={setUsername}
+          validationFunction={usernameValidation}
+          onValidation={setUsernameVerify}
+        ></InputView>
+        <InputView
+          type="email"
+          placeholder="Email"
+          onChange={setPassword}
+          validationFunction={emailValidation}
+          onValidation={setEmailVerify}
+        ></InputView>
+        <InputView
+          type="phone"
+          placeholder="Phone"
+          onChange={setPhone}
+          validationFunction={phoneValidation}
+          onValidation={setPhoneVerify}
+        ></InputView>
+        <InputView
+          type="pass"
+          placeholder="Password"
+          onChange={setPassword}
+          validationFunction={passwordValidation}
+          onValidation={setPasswordVerify}
+        ></InputView>
+        <DropdownView
+          placeholder="Select Country"
+          items={Data.countries}
+          onChange={setCountry}
+          validationFunction={countryValidation}
+          onValidation={setCountryVerify}
+        />
 
         <View style={styles.createAccountContainer}>
           <Text style={styles.wrapperText}>
