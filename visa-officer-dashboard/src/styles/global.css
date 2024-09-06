@@ -1,0 +1,94 @@
+/* Common styles to be used */
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Ensure full height for html, body, and root */
+  html, body, #root {
+    height: 100%;
+    font-family: Arial, sans-serif; /* Set default font */
+    background-color: #f0f0f0; /* Light background color */
+    color: #333; /* Default text color */
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Full-width and height container */
+  .full-height-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Vertical centering */
+  .center-vertical {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ensure it takes the full height of parent */
+  }
+  
+  /* Horizontal and vertical centering */
+  .center-both {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  /* Link styling */
+  a {
+    color: #1e90ff;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+  
+  /* Button styling */
+  button {
+    display: inline-block;
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1e90ff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #1c86ee;
+  }
+  
+  /* Utility spacing */
+  .mt-20 {
+    margin-top: 20px;
+  }
+  
+  .mb-20 {
+    margin-bottom: 20px;
+  }
+  
+  /* Utility text alignment */
+  .text-center {
+    text-align: center;
+  }
+  
+  /* Image styling */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  

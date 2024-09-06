@@ -1,0 +1,92 @@
+/* index.css */
+
+/* Reset some basic styles for consistency across browsers */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  font-family: 'Arial', sans-serif; /* Set a default font for the app */
+  background-color: #f8f9fa; /* Light background color */
+  color: #333; /* Default text color */
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Set consistent style for images and media */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Container for center alignment */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Centering horizontally */
+.center-horizontally {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+/* Centering vertically */
+.center-vertically {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* Centering both horizontally and vertically */
+.center-both {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Basic button styling */
+button {
+  display: inline-block;
+  font-size: 1rem;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1e90ff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #1c86ee;
+}
+
+/* Utility class for centering text */
+.text-center {
+  text-align: center;
+}
+
+/* Utility class for margin */
+.mt-20 {
+  margin-top: 20px;
+}
+
+/* Link styles */
+a {
+  color: #1e90ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
