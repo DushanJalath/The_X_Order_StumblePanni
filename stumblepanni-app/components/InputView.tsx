@@ -45,7 +45,8 @@ const InputView = ({
     // If onValidation is provided, & validationFunction provided, & validationFunction is true, THEN set onValidation to true ELSE set onValidation to false
   };
 
-  const keyboardType = type === "phone" ? "numeric" : "default";
+  // const keyboardType = type === "phone" ? "numeric" : "default";
+  const keyboardType = "default";
 
   return (
     <View style={styles.inputContainer}>

@@ -19,35 +19,18 @@ import {
   Textarea,
   useDisclosure,
 } from "@chakra-ui/react";
-import { FiCheckCircle, FiXCircle } from "react-icons/fi";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { FiCheckCircle,FiXCircle} from "react-icons/fi";
 
-interface UserDetails {
-  refNo: string;
-  passportNo: string;
-  name: string;
-  country: string;
-}
 
-const UserDetailsCard: React.FC = () => {
+function UserDetailsCard({ refNo, passportNo, name, country }:{
+    refNo: string;
+    passportNo: string;
+    name: string;
+    country: string;
+  }) {
   const [modalType, setModalType] = useState(""); 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [interpolRecordFound, setInterpolRecordFound] = useState(true);
-  const [status, setStatus] = useState(""); // New state to handle status
-  const navigate = useNavigate(); // Use useNavigate to route
-
-  // Example user data, can be dynamic
-  const userDetails: UserDetails = {
-    refNo: "36123",
-    passportNo: "340907612",
-    name: "John Doe",
-    country: "USA",
-  };
-
-  const handleManualCheck = () => {
-    // Navigate to Interpol Check page with user details as state
-    navigate("/Interpolepage", { state: { userDetails } });
-  };
+  const [interpolRecordFound, setInterpolRecordFound] = useState(false);
 
   const handleButtonClick = (type: string) => {
     setModalType(type);
@@ -84,22 +67,22 @@ const UserDetailsCard: React.FC = () => {
           <HStack>
             <Text fontWeight="bold" width="75px">Ref No</Text>
             <Text>:</Text>
-            <Text>{userDetails.refNo}</Text>
+            <Text>{refNo}</Text>
           </HStack>
           <HStack>
             <Text fontWeight="bold" width="75px">Passport No</Text>
             <Text>:</Text>
-            <Text>{userDetails.passportNo}</Text>
+            <Text>{passportNo}</Text>
           </HStack>
           <HStack>
             <Text fontWeight="bold" width="75px">Name</Text>
             <Text>:</Text>
-            <Text>{userDetails.name}</Text>
+            <Text>{name}</Text>
           </HStack>
           <HStack>
             <Text fontWeight="bold" width="75px">Country</Text>
             <Text>:</Text>
-            <Text>{userDetails.country}</Text>
+            <Text>{country}</Text>
           </HStack>
         </VStack>
 
