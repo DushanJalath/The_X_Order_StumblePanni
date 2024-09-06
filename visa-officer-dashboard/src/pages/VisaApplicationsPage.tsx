@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import UserDetailsCard from "../components/UserDetailsCard";
 import {
   Box,
   Flex,
@@ -9,11 +10,19 @@ import {
 import { FiCheckCircle } from "react-icons/fi";
 import Layout from "../layouts/layout";
 
-const data=Array();
+interface VisaApplication {
+  refNo: string;
+  passportNo: string;
+  name: string;
+  country: string;
+}
+
 const itemsPerPage = 10;
+
 
 function DashboardCard() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [data, setData] = useState<VisaApplication[]>([]);
 
   // Calculate the index of the first and last item on the current page
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -50,7 +59,15 @@ function DashboardCard() {
         Approve, Reject or Request Further Information for Visa Applications
       </Text>
 
-      <UserDetailsCard/>
+      {currentItems.map((item, index) => (
+          <UserDetailsCard
+            key={index}
+            refNo={item.refNo}
+            passportNo={item.passportNo}
+            name={item.name}
+            country={item.country}
+          />
+        ))}
 
     <Flex justify="center" mt={4}>
         <Button margin="0" size="sm"  onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} mr={2}>
