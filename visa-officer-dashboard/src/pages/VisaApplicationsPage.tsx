@@ -6,7 +6,8 @@ import {
   Button,
 
 } from "@chakra-ui/react";
-import UserDetailsCard from "../components/UserDetailsCard";
+import { FiCheckCircle } from "react-icons/fi";
+import Layout from "../layouts/layout";
 
 const data=Array();
 const itemsPerPage = 10;
@@ -31,7 +32,8 @@ function DashboardCard() {
 
 
   return (
-    <Box
+    <Layout>
+      <Box
       p={4}
       boxShadow="lg"
       borderRadius="md"
@@ -63,6 +65,7 @@ function DashboardCard() {
       </Flex>
 
     </Box>
+    </Layout>
 
     
   );

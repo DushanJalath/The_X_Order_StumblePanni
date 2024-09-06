@@ -1,0 +1,37 @@
+/* Flexbox layout */
+.layout {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+  }
+  
+  .page-content {
+    flex: 1; /* Takes the remaining width */
+    padding: 2rem;
+    background-color: #f3f4f6; /* Light background for content */
+    overflow-y: auto; /* Allows vertical scrolling */
+    overflow-x: hidden; /* Hides horizontal overflow */
+  }
+  
+  
+  .navbar {
+    width: 250px; /* Fixed width for the navbar */
+    background-color: #1f2937; /* Dark background for the navbar */
+    color: white;
+    padding: 1rem;
+  }
+  
+  /* Navbar styling */
+  .navbar nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .navbar nav ul li {
+    margin-bottom: 1rem;
+    cursor: pointer;
+  }
+  
+  .navbar nav ul li:hover {
+    color: #10b981; /* Green highlight on hover */
+  }
+  
