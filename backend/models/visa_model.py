@@ -46,6 +46,7 @@ class DocumentsSet(BaseModel):
 class VisaModel(BaseModel):
     _id: Union[str, ObjectId]
     userEmail:str
+    visaCategory: str
     persInfo:PersonalInformation
     travInfo:TravelInformation
     contactInfo:ContactInformation
