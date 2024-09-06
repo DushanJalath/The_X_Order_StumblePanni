@@ -132,6 +132,7 @@ def get_maya_chatbot_res(req:RagReqSchema, user: str = Depends(get_current_user)
     response=run_conversation(base_prompt+req.question)
     return JSONResponse({"response": response})
 
-# @router.get('/get-tacking-status',response_class=dict)
-# def get_tracking_status():
+@router.get('/get-tacking-status',response_class=dict)
+def get_tracking_status():
+    
 
