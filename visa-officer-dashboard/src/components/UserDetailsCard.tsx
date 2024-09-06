@@ -21,10 +21,16 @@ import {
 } from "@chakra-ui/react";
 import { FiCheckCircle,FiXCircle} from "react-icons/fi";
 
-function UserDetailsCard() {
+
+function UserDetailsCard({ refNo, passportNo, name, country }:{
+    refNo: string;
+    passportNo: string;
+    name: string;
+    country: string;
+  }) {
   const [modalType, setModalType] = useState(""); 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [interpolRecordFound, setInterpolRecordFound] = useState(true);
+  const [interpolRecordFound, setInterpolRecordFound] = useState(false);
 
   const handleButtonClick = (type: string) => {
     setModalType(type);
@@ -48,22 +54,22 @@ function UserDetailsCard() {
           <HStack>
             <Text fontWeight="bold" width="75px">Ref No</Text>
             <Text>:</Text>
-            <Text>36123</Text>
+            <Text>{refNo}</Text>
           </HStack>
           <HStack>
             <Text fontWeight="bold" width="75px">Passport No</Text>
             <Text>:</Text>
-            <Text>340907612</Text>
+            <Text>{passportNo}</Text>
           </HStack>
           <HStack>
             <Text fontWeight="bold" width="75px">Name</Text>
             <Text>:</Text>
-            <Text>Name</Text>
+            <Text>{name}</Text>
           </HStack>
           <HStack>
             <Text fontWeight="bold" width="75px">Country</Text>
             <Text>:</Text>
-            <Text>Country</Text>
+            <Text>{country}</Text>
           </HStack>
         </VStack>
 
