@@ -43,6 +43,7 @@ class DocumentsSet(BaseModel):
 
 class VisaSchema(BaseModel):
     userEmail:str
+    visaCategory: str
     persInfo:PersonalInformation
     travInfo:TravelInformation
     contactInfo:ContactInformation
