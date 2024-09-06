@@ -13,7 +13,10 @@ const VisaApplicationScreen: React.FC = () => {
 
     const handleNextPress = () => {
         console.log('Selected category:', selectedOption);
-        router.push("info_personal");
+        router.push({
+            pathname: "/info_personal",
+            params: { selectedOption }
+        });
     };
 
     const isNextButtonDisabled = selectedOption === null;

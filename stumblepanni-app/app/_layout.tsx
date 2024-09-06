@@ -43,7 +43,7 @@ export default function RootLayout() {
 		<ThemeProvider
 			value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
 		>
-			<Stack screenOptions={{ headerShown: false }}>
+			<Stack screenOptions={{ headerShown: false ,animation: "slide_from_right"}}>
 				<Stack.Screen name="index" />
 				<Stack.Screen name="(login)" options={{ headerShown: false }} />
 				<Stack.Screen name="mainmenu" />
