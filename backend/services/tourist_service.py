@@ -71,6 +71,6 @@ class TouristService:
         return TouristRepositoary.create(visa_data)
     
     @staticmethod
-    def get_all():
-        visas=TouristRepositoary.get_all()
+    async def get_all():
+        visas = await TouristRepositoary.get_all()
         return [VisaSchema(**visa.dict()) for visa in visas]

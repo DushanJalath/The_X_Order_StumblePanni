@@ -9,6 +9,11 @@ class UserModel(BaseModel):
     password:str
     country:str
     type:str
+    first_name: str
+    last_name: str
+    sex_id: str
+    nationality_code: str
+    image_url: str
     
     class Config:
         allow_population_by_field_name = True

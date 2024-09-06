@@ -5,5 +5,5 @@ from schemas.user_schema import UserCreateSchema
 class UserService:
 
     @staticmethod   
-    def create_user(user_data:UserCreateSchema):
-        return UserRepository.create_user(user_data)
+    async def create_user(user_data:UserCreateSchema):
+        return await UserRepository.create_user(user_data)

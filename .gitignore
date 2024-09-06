@@ -8,3 +8,5 @@ backend/rag-knowledge-base
 node_modules
 venv/
 *.pyc
+backend/.env
+**/__pycache__/

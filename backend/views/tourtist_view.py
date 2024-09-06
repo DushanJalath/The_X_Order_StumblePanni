@@ -11,7 +11,7 @@ from rag.rag_maya import run_conversation
 
 router = APIRouter()
 
-def get_current_user(token: str = Depends(AuthService.get_user_from_token)):
+async def get_current_user(token: str = Depends(AuthService.get_user_from_token)):
     if token is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -114,8 +114,8 @@ async def save_visa(
     return result
 
 @router.get('/get-all-visa',response_model=List[VisaSchema],)
-def get_all_visa(user: str = Depends(get_current_user)):
-    return TouristService.get_all()
+async def get_all_visa(user: str = Depends(get_current_user)):
+    return await TouristService.get_all()
 
 @router.post('/get-maya-ouput',response_model=RagResSchema)
 def get_maya_chatbot_res(req:RagReqSchema, user: str = Depends(get_current_user)):

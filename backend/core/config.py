@@ -1,5 +1,6 @@
 from pydantic_settings import BaseSettings
 
+
 class Settings(BaseSettings):
     secret_key: str
     algorithm: str = "HS256"
@@ -10,9 +11,15 @@ class Settings(BaseSettings):
     aws_secret_access_key:str
     aws_region:str
     s3_bucket_name:str
+    stripe_secret_key: str
+    stripe_webhook_secret: str
+    openai_api_key: str
+    SMTP_USERNAME: str
+    SMTP_PASSWORD: str
+    EMAIL_FROM: str
 
     class Config:
         env_file = ".env"
 
-settings = Settings()
 
+settings = Settings()

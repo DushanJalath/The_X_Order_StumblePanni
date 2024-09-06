@@ -10,15 +10,15 @@ pwd_context = CryptContext(schemes=['bcrypt'],deprecated="auto")
 class AuthService:
 
     @staticmethod
-    def verify_password(plain_password,hashed_password):
+    async def verify_password(plain_password,hashed_password):
         return pwd_context.verify(plain_password,hashed_password)
 
     @staticmethod
-    def get_password_hash(password):
+    async def get_password_hash(password):
         return pwd_context.hash(password)
     
     @staticmethod
-    def create_access_token(data: dict):
+    async def create_access_token(data: dict):
         to_encode = data.copy()
         expire = datetime.utcnow() + timedelta(minutes=settings.access_token_expire_minutes)
         to_encode.update({"exp":expire})
@@ -26,14 +26,14 @@ class AuthService:
         return encoded_jwt
     
     @staticmethod
-    def authenticate_user(username:str, password:str):
-        user = UserRepository.get_user_by_email(username)
+    async def authenticate_user(username:str, password:str):
+        user = await UserRepository.get_user_by_email(username)
         if user and AuthService.verify_password(password,user.password):
             return user
         return None
 
     @staticmethod
-    def get_user_from_token(token:str): 
+    async def get_user_from_token(token:str): 
         try :
             payload = jwt.decode(token, settings.secret_key, algorithms=[settings.algorithm])
             username: str = payload.get("sub")
