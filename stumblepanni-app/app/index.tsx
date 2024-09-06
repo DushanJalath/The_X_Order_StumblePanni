@@ -1,56 +1,161 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { useRouter } from "expo-router";
-import React from "react";
-import {Colors} from "@/constants/Colors";
-
-const Index = () => {
-	const router = useRouter();
-
-	const navigateToVisa = () => {
-		router.push("/(visa)");
+import {
+	StyleSheet,
+	View,
+	Text,
+	ImageBackground,
+	Dimensions,
+	LogBox,
+  } from "react-native";
+  import React, { useEffect, useState } from "react";
+  import { LinearGradient } from "expo-linear-gradient";
+  import Animated, {
+	useSharedValue,
+	withTiming,
+	useAnimatedStyle,
+	withDelay,
+	Easing,
+	runOnJS,
+  } from "react-native-reanimated";
+  
+  import { CommonStyles } from "@/constants/CommonStyles";
+  import { router } from "expo-router";
+  import { TouchableWithoutFeedback } from "react-native";
+  import { Colors } from "@/constants/Colors";
+  
+  const assets = {
+	Background: require("../assets/images/Onboarding/pexels-alexazabache-3250362.jpg"),
+	Logo: require("../assets/images/Logo/logo.png"),
+	LogoName: require("../assets/images/Logo/logo-name.png"),
+  };
+  
+  const { width, height } = Dimensions.get("window");
+  
+  const OnboardingClosure = () => {
+	LogBox.ignoreAllLogs();
+	const [isTouchable, setIsTouchable] = useState(false); // Initially disable touch
+  
+	const handleTouch = () => {
+	  if (!isTouchable) return; // Do nothing if touch is disabled
+	  router.push("/(login)");
 	};
-
-	const navigateToLogin = () => {
-		router.push("/(login)");
-	};
-
+  
+	// ANIMATION
+	const scale = useSharedValue(1);
+	const translateX = useSharedValue(0);
+	const translateY = useSharedValue(0);
+	const LogoOpacity = useSharedValue(1); 
+	const LogoNameOpacity = useSharedValue(0);
+  
+	useEffect(() => {
+	  const delayDuration = 2000; 
+	  const opacityDelay = 2100;
+	  const animationDuration = 1000;
+	  const translateDuration = 2000;
+	  scale.value = withDelay(
+		delayDuration,
+		withTiming(0.3, { duration: animationDuration })
+	  );
+	  translateX.value = withDelay(
+		delayDuration,
+		withTiming(width, { duration: translateDuration, easing: Easing.linear })
+	  );
+	  translateY.value = withDelay(
+		delayDuration,
+		withTiming(0, { duration: animationDuration, easing: Easing.linear })
+	  );
+	  LogoOpacity.value = withDelay(
+		opacityDelay,
+		withTiming(0, { duration: animationDuration })
+	  );
+	  LogoNameOpacity.value = withDelay(delayDuration, withTiming(1, { duration: 1000 }, () => {
+		// Enable touch after animation completes
+		runOnJS(setIsTouchable)(true);
+	  }));
+	}, []);
+  
+	// Animated styles for logo
+	const animatedLogoStyle = useAnimatedStyle(() => {
+	  return {
+		transform: [
+		  { scale: scale.value },
+		  { translateX: translateX.value },
+		  { translateY: translateY.value },
+		],
+		opacity: LogoOpacity.value,
+	  };
+	});
+	const animatedLogoNameStyle = useAnimatedStyle(() => {
+	  return {
+		opacity: LogoNameOpacity.value,
+	  };
+	});
+	// END ANIMATION
+  
 	return (
-		<View style={styles.container}>
-			<TouchableOpacity style={styles.login} onPress={navigateToLogin}>
-				<Text style={styles.buttonText}>Go to Login</Text>
-			</TouchableOpacity>
-
-			<TouchableOpacity style={styles.button} onPress={navigateToVisa}>
-				<Text style={styles.buttonText}>Go to Visa</Text>
-			</TouchableOpacity>
-		</View>
+	  <View style={styles.container}>
+		<ImageBackground
+		  source={assets.Background}
+		  style={styles.backgroundImage}
+		  resizeMode="cover"
+		>
+		  <TouchableWithoutFeedback
+			onPress={handleTouch}
+			style={CommonStyles.centeredContent}
+		  >
+			<LinearGradient
+			  colors={["rgba(255, 255, 255, 0)", "rgba(0, 0, 0, 1)"]}
+			  style={styles.gradient}
+			>
+			  <View style={CommonStyles.container}>
+				<Animated.Image
+				  source={assets.Logo}
+				  style={[styles.logo, animatedLogoStyle]}
+				  resizeMode="contain"
+				/>
+				<Animated.Image
+				  source={assets.LogoName}
+				  style={[styles.logo, styles.logoName, animatedLogoNameStyle]}
+				  resizeMode="contain"
+				/>
+			  </View>
+			</LinearGradient>
+		  </TouchableWithoutFeedback>
+		</ImageBackground>
+	  </View>
 	);
-};
-
-const styles = StyleSheet.create({
+  };
+  
+  export default OnboardingClosure;
+  
+  const styles = StyleSheet.create({
+	content: {},
+	logo: {
+	  position: "absolute",
+	},
+	logoName: {
+	  position: "absolute",
+  
+	  width: width * 0.6,
+	},
+	textView: {
+	  flex: 1,
+	  justifyContent: "center",
+	  alignItems: "center",
+	},
+	backgroundImage: {
+	  width: width, // Full screen width
+	  height: height, // Full screen height
+	  position: "absolute",
+	  bottom: 0,
+	},
 	container: {
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
+	  flex: 1,
 	},
-	button: {
-		backgroundColor: Colors.pallete.accent, // Teal color
-		paddingHorizontal: 50,
-		paddingVertical: 20,
-		borderRadius: 10, // Rounded corners
+	icon: {
+	  fontSize: 86,
+	  color: Colors.pallete.white,
 	},
-	buttonText: {
-		color: "white",
-		fontSize: 16,
-		fontWeight: "bold",
+	gradient: {
+	  flex: 1,
 	},
-	login: {
-		backgroundColor: "#f4511e", // Teal color
-		paddingHorizontal: 50,
-		paddingVertical: 20,
-		borderRadius: 10, // Rounded corners
-		marginBottom: 20,
-	},
-});
-
-export default Index;
+  });
