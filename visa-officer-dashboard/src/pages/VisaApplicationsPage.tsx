@@ -6,7 +6,8 @@ import {
   Button,
 
 } from "@chakra-ui/react";
-import { FiCheckCircle } from "react-icons/fi";
+
+import UserDetailsCard from "../components/UserDetailsCard";
 import Layout from "../layouts/layout";
 
 const data=Array();
