@@ -19,3 +19,5 @@ PyPDF2==3.0.1
 openai
 boto3
 sentence_transformers
+jose
+python-jose
