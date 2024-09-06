@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 import {View, Text, ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
 import {Colors} from "@/constants/Colors";
 import CustomButton from "@/components/CustomButton";
-import {useLocalSearchParams} from "expo-router";
+import {router, useLocalSearchParams} from "expo-router";
 import Checkbox from 'expo-checkbox';
+import {data} from "@remix-run/router/utils";
+import axios from "axios";
 
 
 const ReviewApplication: React.FC = () => {
@@ -14,6 +16,86 @@ const ReviewApplication: React.FC = () => {
     const passedFileReferences = JSON.parse(fileReferences as string);
 
     const [checked, setChecked] = useState(false);
+
+    interface FileReference {
+        documentType: string;
+        fileUri: string;
+        fileName: string;
+    }
+    const handleSubmit = async () => {
+        if (!checked) {
+            alert('Please confirm that the above details are accurate.');
+            return;
+        }
+
+        // Create FormData object
+        const formData = new FormData();
+
+        formData.append("surName", parsedPersonalInfo.surname);
+        formData.append("otherName", parsedPersonalInfo.givenNames);
+        formData.append("title", parsedPersonalInfo.title);
+        formData.append("dob", parsedPersonalInfo.dateOfBirth);
+        formData.append("gender", parsedPersonalInfo.gender);
+        formData.append("nationality", parsedPersonalInfo.nationality);
+        formData.append("passport", parsedPersonalInfo.passportNumber);
+        formData.append("country_of_birth", parsedPersonalInfo.countryOfBirth);
+        formData.append("occupation", parsedPersonalInfo.occupation);
+
+        // Contact Info
+        formData.append("userEmail", parsedContactInfo.email);
+        formData.append("addressLine1", parsedContactInfo.addressLine1);
+        formData.append("addressLine2", parsedContactInfo.addressLine2);
+        formData.append("city", parsedContactInfo.city);
+        formData.append("country", parsedContactInfo.country);
+        formData.append("zip_postal_code", parsedContactInfo.zipCode);
+        formData.append("telephone_number", parsedContactInfo.telephone);
+        formData.append("mobile_number", parsedContactInfo.mobile);
+        formData.append("address_in_sl", parsedContactInfo.addressInSriLanka);
+
+        // Travel Info
+        formData.append("whereYouHaveBeenForLast14Days", parsedTravelInfo.last14DaysTravel);
+        formData.append("visaRequiredNoOfDays", parsedTravelInfo.visaRequiredDays);
+        formData.append("arrivalDate", parsedTravelInfo.intendedArrivalDate);
+        formData.append("purposeOfVisa", parsedTravelInfo.purposeOfVisit);
+        formData.append("portOfDepature", parsedTravelInfo.portOfDeparture);
+        formData.append("airlinevessel", parsedTravelInfo.airlineVessel);
+        formData.append("flightVesselNo", parsedTravelInfo.flightVesselNumber);
+
+        const findFile = (type: string): FileReference | undefined =>
+            passedFileReferences.find((file: FileReference) => file.documentType === type);
+
+        const appendFile = (key: string, type: string) => {
+            const file = findFile(type);
+            if (file) {
+                const fileType = file.fileUri.split('.').pop() === 'pdf' ? 'application/pdf' : 'image/jpeg';
+                const blob = new Blob([file.fileUri], { type: fileType }); // Creating a Blob
+
+                formData.append(key, blob, file.fileName); // Pass Blob and the filename
+            }
+        };
+
+
+// Usage examples
+        appendFile("photo", "Recent Passport-sized Photograph");
+        appendFile("firstPageOfPassPort", "Scanned Copy of the First Page of Your Passport");
+        appendFile("financialProofDoc", "Financial Proof Documents");
+        appendFile("travelHistory", "Travel history of the last 12 months");
+
+        const apiUrl = "http://192.168.8.103/tourist/save-visa";
+        try {
+            const { data } = await axios.post(apiUrl, formData, {
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "multipart/form-data",
+
+                },
+            });
+            console.log(data);
+        } catch (error) {
+            console.log("Error while selecting file: ", error);
+        }
+    };
+
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.headerText}>Review Your Application</Text>
@@ -128,7 +210,7 @@ const ReviewApplication: React.FC = () => {
                 <TouchableOpacity
                     style={[styles.button,{backgroundColor:"#447e7f"}]}
                     onPress={() => {
-                        // Navigate to '/info_personal'
+                        router.push("/info_personal")
                     }}
                 >
                     <Text style={styles.buttonText}>Edit</Text>
@@ -139,6 +221,8 @@ const ReviewApplication: React.FC = () => {
                     style={[styles.button,{backgroundColor:"#305858"}]}
                     onPress={() => {
                         if (checked) {
+                            alert('Successfully submitted the application.');
+                            router.replace('/mainmenu')
                             // Navigate to '/submit_success'
                         } else {
                             alert('Please confirm that the above details are accurate.');
