@@ -17,6 +17,8 @@ import { CommonStyles } from "@/constants/CommonStyles";
 import { useRouter } from "expo-router";
 import axios from "axios";
 import { Constants } from "@/constants/Constants";
+import apiClient from "../../api/apiClient";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const index = () => {
   // states, validations
@@ -28,7 +30,8 @@ const index = () => {
   const [loading, setLoading] = React.useState(false);
 
   const usernameValidation = (text: string) => {
-    return text.length > 0;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(text);
   };
   const passwordValidation = (text: string) => {
     return text.length > 0;
@@ -45,23 +48,27 @@ const index = () => {
     }
     setLoading(true);
 
-    // login payload
-    const loginPayload = {
-      username: username,
-      password: password,
-    };
-
     try {
-      const response = await axios.post(`${Constants.url}/auth/login`, loginPayload);
+      const params = new URLSearchParams();
+      params.append("username", username);
+      params.append("password", password);
 
-      if (response.data.token) {
+      const response = await apiClient.post("/auth/login", params, {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      });
+
+      if (response.data.access_token) {
+        await AsyncStorage.setItem("jwtToken", response.data.access_token);
         router.push("/part1");
       } else {
-        Alert.alert('Login Failed', 'Invalid credentials');
+        Alert.alert("Login Failed", "Invalid credentials");
       }
-    } catch (error) {
-      console.error('Error during login:', error);
-      Alert.alert('Login Failed', 'An error occurred. Please try again.');
+    } catch (error: any) {
+      if (error.response.status === 401) {
+        Alert.alert("Login Failed", "Invalid credentials");
+      } else {
+        Alert.alert("Login Failed", "An error occurred. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
@@ -109,7 +116,11 @@ const index = () => {
             <Text style={styles.forgotPassword}>Forgot Password?</Text>
           </TouchableOpacity>
         </View>
-        <AccentButton onPress={handleLogin} title={loading ? 'Logging in...' : 'Login'} disabled={loading}></AccentButton>
+        <AccentButton
+          onPress={handleLogin}
+          title={loading ? "Logging in..." : "Login"}
+          disabled={loading}
+        ></AccentButton>
         <View style={styles.createAccountContainer}>
           <Text style={styles.createAccountText}>
             Don't you have an account?

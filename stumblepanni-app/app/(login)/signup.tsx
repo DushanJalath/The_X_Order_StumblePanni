@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  Alert,
 } from "react-native";
 import { useRouter } from "expo-router";
 
@@ -14,6 +15,8 @@ import DropdownView from "@/components/DropdownView";
 import { Colors } from "@/constants/Colors";
 import { Data } from "@/constants/Data";
 import { CommonStyles } from "@/constants/CommonStyles";
+import apiClient from "@/api/apiClient";
+import { set } from "react-hook-form";
 
 const signup = () => {
   // states and validations
@@ -29,7 +32,7 @@ const signup = () => {
   const [countryVerify, setCountryVerify] = useState(false);
 
   const usernameValidation = (text: string) => {
-    return text.length > 5;
+    return text.length > 0;
   };
   const passwordValidation = (text: string) => {
     // Minimum eight characters, at least one uppercase letter, one lowercase letter and one number
@@ -42,7 +45,7 @@ const signup = () => {
   };
   const phoneValidation = (text: string) => {
     const phoneRegex = /^\+?[1-9]\d{1,14}$/;
-    return phoneRegex.test(phone);
+    return phoneRegex.test(text);
   };
   const countryValidation = (text: string) => {
     return text.length > 0;
@@ -50,20 +53,42 @@ const signup = () => {
 
   // routing
   const router = useRouter();
-  const handleRegister = () => {
+  const handleRegister = async () => {
     const validDetails =
       usernameVerify &&
       passwordVerify &&
       emailVerify &&
       phoneVerify &&
       countryVerify;
-    // console.log("Valid country: ", countryVerify);
-    // console.log("Country: ", country);
-    if (validDetails) {
-      router.push("/");
-    } else {
-      alert("Please fill all fields correctly");
-    }
+
+      if (!validDetails) {
+        Alert.alert("Invalid Details", "Please fill all fields correctly.");
+        return;
+      }
+
+      try {
+        // Create the request body matching UserCreateSchema
+        const data = {
+          fullName: username,
+          email: email,
+          phoneNo: phone,
+          password,
+          country,
+          type: "visitor",
+        };
+  
+        const response = await apiClient.post('/auth/register', data);
+  
+        if (response.status === 200 || response.status === 201) {
+          Alert.alert('Registration Successful', 'Your account has been created!');
+          router.push("/");
+        } else {
+          Alert.alert('Registration Failed', 'Please check your details and try again.');
+        }
+      } catch (error) {
+        console.error('Registration error:', error);
+        Alert.alert('Error', 'An error occurred during registration.');
+      }
   };
   const handleTermsAndConditions = () => {
     router.push("/maintenance");
@@ -93,7 +118,7 @@ const signup = () => {
         <InputView
           type="email"
           placeholder="Email"
-          onChange={setPassword}
+          onChange={setEmail}
           validationFunction={emailValidation}
           onValidation={setEmailVerify}
         ></InputView>

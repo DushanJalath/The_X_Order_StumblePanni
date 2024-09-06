@@ -13,7 +13,7 @@ const AccentButton = ({
   title: string;
   style?: any;
   textStyle?: any;
-  disabled: any;
+  disabled?: any;
 }) => {
   return (
     <TouchableOpacity onPress={onPress} style={[styles.button, style]} disabled={disabled}>
