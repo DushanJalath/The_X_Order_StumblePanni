@@ -3,5 +3,8 @@ visa-officer-dashboard/.env
 visa-officer-dashboard/lib
 visa-officer-dashboard/node_modules
 backend/.env
+backend/rag-knowledge-base
 .idea
 node_modules
+venv/
+*.pyc
