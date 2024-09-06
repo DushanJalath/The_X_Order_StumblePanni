@@ -19,16 +19,52 @@ import {
   Textarea,
   useDisclosure,
 } from "@chakra-ui/react";
-import { FiCheckCircle,FiXCircle} from "react-icons/fi";
+import { FiCheckCircle, FiXCircle } from "react-icons/fi";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 
-function UserDetailsCard() {
+interface UserDetails {
+  refNo: string;
+  passportNo: string;
+  name: string;
+  country: string;
+}
+
+const UserDetailsCard: React.FC = () => {
   const [modalType, setModalType] = useState(""); 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [interpolRecordFound, setInterpolRecordFound] = useState(true);
+  const [status, setStatus] = useState(""); // New state to handle status
+  const navigate = useNavigate(); // Use useNavigate to route
+
+  // Example user data, can be dynamic
+  const userDetails: UserDetails = {
+    refNo: "36123",
+    passportNo: "340907612",
+    name: "John Doe",
+    country: "USA",
+  };
+
+  const handleManualCheck = () => {
+    // Navigate to Interpol Check page with user details as state
+    navigate("/Interpolepage", { state: { userDetails } });
+  };
 
   const handleButtonClick = (type: string) => {
     setModalType(type);
     onOpen();
+  };
+
+  const handleApprove = () => {
+    setStatus("Approved"); // Set the status to Approved when the button is clicked
+  };
+
+  const handleSendEmail = () => {
+    if (modalType === "Reject") {
+      setStatus("Rejected"); // Set status to Rejected
+    } else if (modalType === "Further Inquiry") {
+      setStatus("Further Inquiry"); // Set status to Further Inquiry
+    }
+    onClose(); // Close the modal after sending the email
   };
 
   return (
@@ -48,22 +84,22 @@ function UserDetailsCard() {
           <HStack>
             <Text fontWeight="bold" width="75px">Ref No</Text>
             <Text>:</Text>
-            <Text>36123</Text>
+            <Text>{userDetails.refNo}</Text>
           </HStack>
           <HStack>
             <Text fontWeight="bold" width="75px">Passport No</Text>
             <Text>:</Text>
-            <Text>340907612</Text>
+            <Text>{userDetails.passportNo}</Text>
           </HStack>
           <HStack>
             <Text fontWeight="bold" width="75px">Name</Text>
             <Text>:</Text>
-            <Text>Name</Text>
+            <Text>{userDetails.name}</Text>
           </HStack>
           <HStack>
             <Text fontWeight="bold" width="75px">Country</Text>
             <Text>:</Text>
-            <Text>Country</Text>
+            <Text>{userDetails.country}</Text>
           </HStack>
         </VStack>
 
@@ -98,35 +134,76 @@ function UserDetailsCard() {
             {interpolRecordFound ? (
               <VStack>
                 <Icon as={FiXCircle} color="red.500" boxSize={6} margin="27px" />
-                <Button colorScheme="red" size="sm" width="120px" borderRadius="60px" margin={0}>
+                <Button 
+                  colorScheme="red" 
+                  size="sm" 
+                  width="120px" 
+                  borderRadius="60px" 
+                  margin={0} 
+                  onClick={handleManualCheck} // Handle Manual Check navigation
+                >
                   Manual Check
                 </Button>
               </VStack>
             ) : (
               <Icon as={FiCheckCircle} color="green.500" boxSize={6} margin="48px" />
             )}
-            {/*<Icon as={FiCheckCircle} color="green.500" boxSize={6} margin="48px" />*/}
           </VStack>
         </Flex>
 
         <Divider orientation="vertical" height="auto" mx={4} />
 
-        {/* Right section with actions */}
+        {/* Right section with status actions */}
         <VStack spacing={2}>
-          <Text fontSize="sm" align="center">Action</Text>
-          <Button colorScheme="green" size="sm" width="120px" borderRadius="60px" margin={0}>
-            Approve
-          </Button>
-          <Button colorScheme="red" size="sm" width="120px" borderRadius="60px" margin={0} onClick={() => handleButtonClick("Reject")}>
-            Reject
-          </Button>
-          <Button colorScheme="yellow" size="sm" width="120px" borderRadius="60px" margin={0} onClick={() => handleButtonClick("Further Inquiry")}>
-            Further Inquiry
-          </Button>
+          <Text fontSize="sm" align="center">Status</Text>
+          {status ? (
+            <Button
+              colorScheme={status === "Approved" ? "green" : status === "Rejected" ? "red" : "yellow"}
+              size="sm"
+              width="120px"
+              borderRadius="60px"
+              margin={0}
+            >
+              {status} {/* Display the current status */}
+            </Button>
+          ) : (
+            <>
+              <Button 
+                colorScheme="green" 
+                size="sm" 
+                width="120px" 
+                borderRadius="60px" 
+                margin={0} 
+                onClick={handleApprove} // Handle Approve button click
+              >
+                Approve
+              </Button>
+              <Button 
+                colorScheme="red" 
+                size="sm" 
+                width="120px" 
+                borderRadius="60px" 
+                margin={0} 
+                onClick={() => handleButtonClick("Reject")} // Handle Reject button click
+              >
+                Reject
+              </Button>
+              <Button 
+                colorScheme="yellow" 
+                size="sm" 
+                width="120px" 
+                borderRadius="60px" 
+                margin={0} 
+                onClick={() => handleButtonClick("Further Inquiry")} // Handle Further Inquiry button click
+              >
+                Further Inquiry
+              </Button>
+            </>
+          )}
         </VStack>
       </Flex>
 
-      {/* Modal for Decline or Further Inquiry */}
+      {/* Modal for Reject or Further Inquiry */}
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -142,7 +219,7 @@ function UserDetailsCard() {
             />
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="green" mr={2} onClick={onClose} borderRadius={60} fontSize="sm">
+            <Button colorScheme="green" mr={2} onClick={handleSendEmail} borderRadius={60} fontSize="sm">
               Send Email
             </Button>
             <Button variant="ghost" onClick={onClose} borderRadius={60} fontSize="sm">
@@ -153,6 +230,6 @@ function UserDetailsCard() {
       </Modal>
     </Box>
   );
-}
+};
 
 export default UserDetailsCard;
