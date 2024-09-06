@@ -9,13 +9,23 @@ import ErrorPage from "./pages/ErrorPage.tsx";
 import App from "./App.tsx";
 import Login from "./pages/Login.tsx";
 import ExamplePage from "./pages/ExamplePage.tsx";
+import VisaApplicationPage from './pages/VisaApplicationsPage.tsx'
+import VisaAnalyticsPage from "./pages/VisaAnalyticsPage.tsx";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <VisaApplicationPage/>,
   }, 
+  {
+    path: "/VisaApplicationPage",
+    element: <VisaApplicationPage/>,
+  },
+  {
+    path: "/VisaAnalyticsPage",
+    element: <VisaAnalyticsPage/>,
+  },
   {
     path: "/login",
     element: <Login />,
