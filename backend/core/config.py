@@ -9,6 +9,9 @@ class Settings(BaseSettings):
     stripe_secret_key: str
     stripe_webhook_secret: str
     openai_api_key: str
+    SMTP_USERNAME: str
+    SMTP_PASSWORD: str
+    EMAIL_FROM: str
 
     class Config:
         env_file = ".env"
