@@ -19,7 +19,7 @@ const DocumentVerification: React.FC<DocumentVerificationProps> = ({ rightImages
       <div className="image-container">
         <div className="left-image">
           <div className="profile-image">
-            <img src="/api/placeholder/96/96" alt="Verification" />
+            <img src="https://cdn.britannica.com/34/221834-050-000BF6F5/American-actor-Chadwick-Boseman-2019.jpg" alt="Verification" />
           </div>
         </div>
         <div className="divider"></div>

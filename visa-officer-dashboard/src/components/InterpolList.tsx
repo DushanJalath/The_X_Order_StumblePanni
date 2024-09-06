@@ -7,25 +7,25 @@ const InterpoleList: React.FC = () => {
     {
       titleLeft: 'Current User',
       titleRight: 'Verification 1',
-      rightImages: ['/api/placeholder/96/96', '/api/placeholder/96/96', '/api/placeholder/96/96'],
+      rightImages: ['https://ws-public.interpol.int/notices/v1/red/2024-60396/images/63196775', 'https://ws-public.interpol.int/notices/v1/red/2024-60396/images/63196777' , 'https://ws-public.interpol.int/notices/v1/red/2024-60396/images/63196773'],
       verificationPoints: [
-        { id: '01', label: 'Point 01' },
-        { id: '02', label: 'Point 02' },
-        { id: '03', label: 'Point 03' },
-        { id: '04', label: 'Point 04' },
-        { id: '05', label: 'Point 05' }
+        { id: '01', label: 'distinguishing_marks : null' },
+        { id: '02', label: 'eyes_colors_id : OTHD' },
+        { id: '03', label: 'hairs_id : OTHD' },
+        { id: '04', label: 'languages_spoken_ids : null' },
+        
       ],
     },
     {
       titleLeft: 'Document A',
       titleRight: 'Verification 2',
-      rightImages: ['/api/placeholder/96/96', '/api/placeholder/96/96', '/api/placeholder/96/96'],
+      rightImages: ['/https://ws-public.interpol.int/notices/v1/red/2024-59183/images/63192130', 'https://ws-public.interpol.int/notices/v1/red/2024-59183/images/63192132', 'https://ws-public.interpol.int/notices/v1/red/2024-59183/images/63192134'],
       verificationPoints: [
-        { id: '01', label: 'Point 01' },
-        { id: '02', label: 'Point 02' },
-        { id: '03', label: 'Point 03' },
-        { id: '04', label: 'Point 04' },
-        { id: '05', label: 'Point 05' }
+        { id: '01', label: 'languages_spoken_ids : GER' },
+        { id: '02', label: 'height : 1.65' },
+        { id: '03', label: 'distinguishing_marks : Birthmarks in the face' },
+        { id: '04', label: 'eyes_colors_id : BRO' },
+        { id: '05', label: 'hairs_id : BLA' }
       ],
     },
     {

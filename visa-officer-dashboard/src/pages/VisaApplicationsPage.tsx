@@ -10,11 +10,30 @@ import {
 import UserDetailsCard from "../components/UserDetailsCard";
 import Layout from "../layouts/layout";
 
-const data=Array();
+interface VisaApplication {
+  refNo: string;
+  passportNo: string;
+  name: string;
+  country: string;
+}
+
+const dummyData: VisaApplication[] = [
+  { refNo: "VA001", passportNo: "P123456789", name: "John Doe", country: "USA" },
+  { refNo: "VA002", passportNo: "P987654321", name: "Jane Smith", country: "Canada" },
+  { refNo: "VA003", passportNo: "P192837465", name: "Emily Johnson", country: "UK" },
+  { refNo: "VA004", passportNo: "P564738291", name: "Michael Brown", country: "Australia" },
+  { refNo: "VA005", passportNo: "P102938475", name: "Linda Davis", country: "New Zealand" },
+  { refNo: "VA006", passportNo: "P564738192", name: "Robert Wilson", country: "Ireland" },
+  { refNo: "VA007", passportNo: "P293847561", name: "Elizabeth Taylor", country: "South Africa" },
+  { refNo: "VA008", passportNo: "P847362915", name: "William Harris", country: "Germany" },
+  { refNo: "VA009", passportNo: "P182736459", name: "Sophia Clark", country: "France" },
+  { refNo: "VA010", passportNo: "P564738291", name: "James Lewis", country: "Italy" },
+];
 const itemsPerPage = 10;
 
 function VisaApplicationPage() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [data, setData] = useState<VisaApplication[]>(dummyData);
 
   // Calculate the index of the first and last item on the current page
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -51,7 +70,15 @@ function VisaApplicationPage() {
         Approve, Reject or Request Further Information for Visa Applications
       </Text>
 
-      <UserDetailsCard/>
+      {currentItems.map((item, index) => (
+          <UserDetailsCard
+            key={index}
+            refNo={item.refNo}
+            passportNo={item.passportNo}
+            name={item.name}
+            country={item.country}
+          />
+        ))}
 
     <Flex justify="center" mt={4}>
         <Button margin="0" size="sm"  onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} mr={2}>
