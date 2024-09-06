@@ -21,3 +21,4 @@ boto3
 sentence_transformers
 jose
 python-jose
+passlib
