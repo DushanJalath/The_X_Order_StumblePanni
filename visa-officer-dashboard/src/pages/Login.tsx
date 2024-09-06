@@ -1,6 +1,9 @@
+import ParentComponent from '../components/InterpolList'
 const Login = () => {
   return (
-    <div>Login</div>
+    <div>
+      <ParentComponent/>
+    </div>
   )
 }
 
