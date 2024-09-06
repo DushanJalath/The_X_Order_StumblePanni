@@ -1,8 +1,9 @@
 # backend/repositories/visa_repository.py
 from core.database import database
-from models.visa_model import VisaApplicationModel, ApprovalModel
+from models.visa_model import VisaModel, ApprovalModel
 from bson import ObjectId
 from datetime import datetime
+
 
 class VisaRepository:
 
@@ -13,14 +14,14 @@ class VisaRepository:
 
     @staticmethod
     async def get_all_visas():
-        visas = await database.visa_applications.find().to_list(length=100)
-        return [VisaApplicationModel(**visa) for visa in visas]
+        all_visa = await database.visa_applications.find().to_list(length=100)
+        return [VisaModel(**visa) for visa in all_visa]
 
     @staticmethod
     async def get_visa_by_id(visa_id: str):
         visa = await database.visa_applications.find_one({"_id": ObjectId(visa_id)})
         if visa:
-            return VisaApplicationModel(**visa)
+            return VisaModel(**visa)
         return None
 
     @staticmethod
@@ -63,7 +64,8 @@ class VisaRepository:
     @staticmethod
     async def update_payment_transaction(user_id: str, visa_id: str, payment_status: str):
         result = await database.payment_transactions.update_one(
-            {"user_id": ObjectId(user_id), "application_id": ObjectId(visa_id)},
+            {"user_id": ObjectId(user_id),
+             "application_id": ObjectId(visa_id)},
             {"$set": {"payment_status": payment_status}}
         )
         return result.modified_count > 0
