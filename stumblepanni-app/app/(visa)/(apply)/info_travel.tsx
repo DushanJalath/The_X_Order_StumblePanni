@@ -92,17 +92,6 @@ const TravelInfoScreen: React.FC = () => {
         } else {
             Alert.alert("Validation Error", "Please fill all fields correctly.");
             //Test
-            console.log('Travel Information:', formData);
-            console.log(selectedCategory, parsedPersonalInfo, parsedContactInfo);
-            router.push({
-                pathname: "/documents",
-                params: {
-                    selectedCategory: selectedCategory,
-                    personalInfo: JSON.stringify(parsedPersonalInfo),
-                    contactInfo: JSON.stringify(parsedContactInfo),
-                    travelInfo: JSON.stringify(formData),
-                },
-            });
         }
     };
 

@@ -103,17 +103,10 @@ const PersonalInfoScreen: React.FC = () => {
                 },
             });
         } else {
-            // Alert.alert("Validation Error", "Please fill all fields correctly.");
+            Alert.alert("Validation Error", "Please fill all fields correctly.");
             //Test
             console.log('Personal Information:', formData);
             console.log('Selected Category:', selectedOption);
-            router.push({
-                pathname: "/info_contact",
-                params: {
-                    personalInfo: JSON.stringify(formData),
-                    selectedCategory: selectedOption,
-                },
-            });
         }
     };
 
