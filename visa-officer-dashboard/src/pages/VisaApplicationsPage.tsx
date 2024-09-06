@@ -19,8 +19,7 @@ interface VisaApplication {
 
 const itemsPerPage = 10;
 
-
-function DashboardCard() {
+function VisaApplicationPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState<VisaApplication[]>([]);
 
@@ -88,4 +87,4 @@ function DashboardCard() {
   );
 }
 
-export default DashboardCard;
+export default VisaApplicationPage;

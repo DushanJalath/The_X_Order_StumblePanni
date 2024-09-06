@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DocumentVerification from '../components/InterpolDisplayComponent';
 import '../styles/InterpolList.css'
 
-const Login: React.FC = () => {
+const InterpoleList: React.FC = () => {
   const verificationData = [
     {
       titleLeft: 'Current User',
@@ -102,4 +102,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default InterpoleList;
