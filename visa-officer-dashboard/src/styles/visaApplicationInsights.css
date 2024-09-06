@@ -1,0 +1,45 @@
+.visa-insights-container {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .visa-insights-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .visa-insights-chart {
+    height: 400px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Recharts customization */
+  .recharts-default-tooltip {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid #ccc !important;
+    border-radius: 4px !important;
+  }
+  
+  .recharts-tooltip-label {
+    font-weight: bold !important;
+    margin-bottom: 5px !important;
+  }
+  
+  .recharts-legend-item-text {
+    font-size: 14px !important;
+  }
+  
+  .recharts-cartesian-axis-tick-value {
+    font-size: 12px !important;
+  }
