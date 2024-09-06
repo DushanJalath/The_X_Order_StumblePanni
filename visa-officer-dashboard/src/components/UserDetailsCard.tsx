@@ -19,11 +19,12 @@ import {
   Textarea,
   useDisclosure,
 } from "@chakra-ui/react";
-import { FiCheckCircle } from "react-icons/fi";
+import { FiCheckCircle,FiXCircle} from "react-icons/fi";
 
 function UserDetailsCard() {
   const [modalType, setModalType] = useState(""); 
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [interpolRecordFound, setInterpolRecordFound] = useState(true);
 
   const handleButtonClick = (type: string) => {
     setModalType(type);
@@ -94,7 +95,17 @@ function UserDetailsCard() {
           </VStack>
           <VStack>
             <Text fontSize="sm" align="center">Interpol record status</Text>
-            <Icon as={FiCheckCircle} color="green.500" boxSize={6} margin="48px" />
+            {interpolRecordFound ? (
+              <VStack>
+                <Icon as={FiXCircle} color="red.500" boxSize={6} margin="27px" />
+                <Button colorScheme="red" size="sm" width="120px" borderRadius="60px" margin={0}>
+                  Manual Check
+                </Button>
+              </VStack>
+            ) : (
+              <Icon as={FiCheckCircle} color="green.500" boxSize={6} margin="48px" />
+            )}
+            {/*<Icon as={FiCheckCircle} color="green.500" boxSize={6} margin="48px" />*/}
           </VStack>
         </Flex>
 
