@@ -30,7 +30,7 @@ function UserDetailsCard({ refNo, passportNo, name, country }:{
   }) {
   const [modalType, setModalType] = useState(""); 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [interpolRecordFound, setInterpolRecordFound] = useState(true);
+  const [interpolRecordFound, setInterpolRecordFound] = useState(false);
 
   const handleButtonClick = (type: string) => {
     setModalType(type);
