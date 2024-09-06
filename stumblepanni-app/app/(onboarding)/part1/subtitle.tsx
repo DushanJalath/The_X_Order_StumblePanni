@@ -3,7 +3,6 @@ import {
   View,
   Text,
   ImageBackground,
-  TouchableHighlight,
 } from "react-native";
 import React from "react";
 import { CommonStyles } from "@/constants/CommonStyles";

@@ -32,10 +32,6 @@ const Index = () => {
   const navigateToVisa = () => {
     router.push("/(visa)");
   };
-
-  const navigateToLogin = () => {
-    router.push("/(login)");
-  };
   const navigateToCurrentTrip = () => {
     router.push("/maintenance");
   };
