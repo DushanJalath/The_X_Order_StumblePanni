@@ -1,0 +1,95 @@
+.document-verification {
+    background-color: #f3f4f6;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    max-width: 48rem;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .document-verification h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .image-container {
+    display: flex;
+    margin-bottom: 1.5rem;
+  }
+  
+  .left-image {
+    width: 25%;
+    padding-right: 1rem;
+  }
+  
+  .right-images {
+    width: 75%;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .divider {
+    width: 1px;
+    background-color: #d1d5db;
+    margin: 0 1rem;
+  }
+  
+  .profile-image {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    background-color: #d1d5db;
+    overflow: hidden;
+  }
+  
+  .profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .verification-points {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 3rem;
+  }
+  
+  .verification-points li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .verification-points li span:first-child {
+    width: 2rem;
+    font-weight: 500;
+  }
+  
+  .tick-button {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    background-color: #10b981;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .tick-button:hover {
+    background-color: #059669;
+  }
+  
+  .tick-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.5);
+  }
+  
+  /* For the CheckCircle icon */
+  .tick-button svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
