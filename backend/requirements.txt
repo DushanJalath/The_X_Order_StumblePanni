@@ -17,3 +17,5 @@ faiss-cpu==1.8.0
 pydantic==2.7.3
 PyPDF2==3.0.1
 openai
+boto3
+sentence_transformers
