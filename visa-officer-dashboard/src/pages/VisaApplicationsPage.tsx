@@ -1,5 +1,4 @@
 import React,{useState} from "react";
-import UserDetailsCard from "../components/UserDetailsCard";
 import {
   Box,
   Flex,
@@ -11,18 +10,11 @@ import {
 import UserDetailsCard from "../components/UserDetailsCard";
 import Layout from "../layouts/layout";
 
-interface VisaApplication {
-  refNo: string;
-  passportNo: string;
-  name: string;
-  country: string;
-}
-
+const data=Array();
 const itemsPerPage = 10;
 
 function VisaApplicationPage() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [data, setData] = useState<VisaApplication[]>([]);
 
   // Calculate the index of the first and last item on the current page
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -59,15 +51,7 @@ function VisaApplicationPage() {
         Approve, Reject or Request Further Information for Visa Applications
       </Text>
 
-      {currentItems.map((item, index) => (
-          <UserDetailsCard
-            key={index}
-            refNo={item.refNo}
-            passportNo={item.passportNo}
-            name={item.name}
-            country={item.country}
-          />
-        ))}
+      <UserDetailsCard/>
 
     <Flex justify="center" mt={4}>
         <Button margin="0" size="sm"  onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} mr={2}>

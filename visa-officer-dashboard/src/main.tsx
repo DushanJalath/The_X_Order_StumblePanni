@@ -27,6 +27,7 @@ const router = createBrowserRouter([
     path: "/VisaApplicationPage",
     element: <VisaApplicationPage/>,
   },
+  
   {
     path: "/VisaAnalyticsPage",
     element: <VisaAnalyticsPage/>,
