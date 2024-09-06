@@ -1,10 +1,9 @@
 # backend/services/visa_service.py
 from repositories.visa_repository import VisaRepository
+from repositories.logs_repository import LogsRepository
 import stripe
 from fastapi import HTTPException
 from core.config import settings
-from core.database import database
-from bson import ObjectId
 
 stripe.api_key = settings.stripe_secret_key
 
@@ -27,7 +26,7 @@ class VisaService:
         success = await VisaRepository.update_visa_status(visa_id, "Approved", officer_id)
         if success:
             await VisaRepository.log_approval_action(visa_id, officer_id, "Approved", comments)
-            await VisaRepository.log_audit_action(visa_id, officer_id, "Visa Approved", f"Visa approved by officer {officer_id}")
+            await LogsRepository.log_audit_action(visa_id, officer_id, "Visa Approved", f"Visa approved by officer {officer_id}")
         return success
 
     @staticmethod
@@ -35,9 +34,8 @@ class VisaService:
         success = await VisaRepository.update_visa_status(visa_id, "Denied", officer_id)
         if success:
             await VisaRepository.log_approval_action(visa_id, officer_id, "Denied", comments)
-            await VisaRepository.log_audit_action(visa_id, officer_id, "Visa Denied", f"Visa denied by officer {officer_id}")
+            await LogsRepository.log_audit_action(visa_id, officer_id, "Visa Denied", f"Visa denied by officer {officer_id}")
         return success
-
 
     @staticmethod
     async def get_visa_details(visa_id: str):
@@ -46,11 +44,10 @@ class VisaService:
             return None
         return visa_application
 
-
     @staticmethod
     async def create_payment_intent(user_id: str, visa_id: str, amount: int, currency: str = 'usd'):
         try:
-            payment_intent = stripe.PaymentIntent.create(
+            payment_intent = await stripe.PaymentIntent.create(
                 amount=amount,  #  $100.00 = 100
                 currency=currency,
                 metadata={"user_id": user_id, "visa_id": visa_id}
@@ -58,13 +55,8 @@ class VisaService:
             return payment_intent
         except Exception as e:
             raise HTTPException(status_code=500, detail=f"Error creating payment intent: {str(e)}")
-        
-        
+    
     @staticmethod
     async def update_payment_status(user_id: str, visa_id: str, status: str):
-        result = await database.payment_transactions.update_one(
-            {"user_id": ObjectId(user_id), "application_id": ObjectId(visa_id)},
-            {"$set": {"payment_status": status}}
-        )
-        if result.modified_count == 0:
-            raise HTTPException(status_code=404, detail="Payment transaction not found")
+        transaction = await VisaRepository.update_payment_transaction(user_id, visa_id, status)
+        return transaction

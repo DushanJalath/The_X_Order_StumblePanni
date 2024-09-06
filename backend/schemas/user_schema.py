@@ -9,6 +9,11 @@ class UserCreateSchema(BaseModel):
     password: str
     country: str
     type:str
+    first_name: str
+    last_name: str
+    sex_id: str
+    nationality_code: str
+    image_url: str
 
 class UserResponseSchema(BaseModel):
     id: str

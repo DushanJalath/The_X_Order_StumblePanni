@@ -7,7 +7,7 @@ from typing import List
 
 router = APIRouter()
 
-def get_current_user(token: str = Depends(AuthService.get_user_from_token)):
+async def get_current_user(token: str = Depends(AuthService.get_user_from_token)):
     if token is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -17,14 +17,14 @@ def get_current_user(token: str = Depends(AuthService.get_user_from_token)):
     return token
 
 @router.post('/save-visa',response_model=dict)
-def save_visa(visa_data:VisaSchema,user: str = Depends(get_current_user)):
+async def save_visa(visa_data:VisaSchema,user: str = Depends(get_current_user)):
     visa_dict=visa_data.dict()
-    return TouristService.save_visa(visa_dict)
+    return await TouristService.save_visa(visa_dict)
 
 
 @router.get('/get-all-visa',response_model=List[VisaSchema],)
-def get_all_visa(user: str = Depends(get_current_user)):
-    return TouristService.get_all()
+async def get_all_visa(user: str = Depends(get_current_user)):
+    return await TouristService.get_all()
 
 # @router.get('/get-tacking-status',response_class=dict)
 # def get_tracking_status():

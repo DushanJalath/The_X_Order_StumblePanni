@@ -1,6 +1,6 @@
 # backend/repositories/visa_repository.py
 from core.database import database
-from models.visa_model import VisaApplicationModel
+from models.visa_model import VisaApplicationModel, ApprovalModel
 from bson import ObjectId
 from datetime import datetime
 
@@ -8,7 +8,8 @@ class VisaRepository:
 
     @staticmethod
     async def create_visa_application(visa_data: dict):
-        await database.visa_applications.insert_one(visa_data)
+        result = await database.visa_applications.insert_one(visa_data)
+        return {"inserted_id": str(result.inserted_id)}
 
     @staticmethod
     async def get_all_visas():
@@ -32,25 +33,14 @@ class VisaRepository:
 
     @staticmethod
     async def log_approval_action(visa_id: str, officer_id: str, decision: str, comments: str = ""):
-        approval_log = {
-            "application_id": ObjectId(visa_id),
-            "officer_id": ObjectId(officer_id),
-            "decision": decision,
-            "decision_date": datetime.utcnow(),
-            "comments": comments
-        }
-        await database.approvals.insert_one(approval_log)
-
-    @staticmethod
-    async def log_audit_action(application_id: str, performed_by: str, action: str, details: str):
-        audit_log = {
-            "application_id": ObjectId(application_id),
-            "performed_by": ObjectId(performed_by),
-            "action": action,
-            "timestamp": datetime.utcnow(),
-            "details": details
-        }
-        await database.audit_logs.insert_one(audit_log)
+        approval = ApprovalModel(
+            application_id=ObjectId(visa_id),
+            officer_id=ObjectId(officer_id),
+            decision=decision,
+            comments=comments,
+            timestamp=datetime.utcnow()
+        )
+        await database.approvals.insert_one(approval.dict())
 
     @staticmethod
     async def get_visa_application_by_id(visa_id: str):
@@ -69,3 +59,11 @@ class VisaRepository:
         visa_application['audit_logs'] = audit_logs
 
         return visa_application
+
+    @staticmethod
+    async def update_payment_transaction(user_id: str, visa_id: str, payment_status: str):
+        result = await database.payment_transactions.update_one(
+            {"user_id": ObjectId(user_id), "application_id": ObjectId(visa_id)},
+            {"$set": {"payment_status": payment_status}}
+        )
+        return result.modified_count > 0
