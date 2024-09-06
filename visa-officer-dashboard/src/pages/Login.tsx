@@ -1,6 +1,10 @@
+import SidebarNavigation from "../compoents/SidebarNavigation"
+
 const Login = () => {
   return (
-    <div>Login</div>
+    <div>
+      <SidebarNavigation/>
+    </div>
   )
 }
 
