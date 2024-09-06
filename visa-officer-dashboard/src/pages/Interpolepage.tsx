@@ -1,12 +1,11 @@
 
-import VisaApplicationGraph from '../components/VisaApplicationGraph';
+import InterpoleList from '../components/InterpolList'
 import Layout from '../layouts/layout'
 const VisaAnalyticsPage = () => {
   return (
     <Layout>
-      <VisaApplicationGraph/>
+      <InterpoleList/>
     </Layout>
-
   )
 }
 

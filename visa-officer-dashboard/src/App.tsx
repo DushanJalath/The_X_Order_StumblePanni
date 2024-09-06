@@ -10,6 +10,8 @@ function App() {
       <div className="center-both">
         <nav>
           <Link to="/">VisaApplication</Link>
+          <Link to="/VisaApplication">Example</Link>
+          <Link to="/example">Example</Link>
           <Link to="/login">Login</Link>
           <Link to="/example">Example</Link>
         </nav>

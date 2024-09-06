@@ -27,7 +27,7 @@ import Layout from "../layouts/layout";
 const data=Array();
 const itemsPerPage = 10;
 
-function DashboardCard() {
+function VisaApplicationPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [modalType, setModalType] = useState(""); 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -204,4 +204,4 @@ function DashboardCard() {
   );
 }
 
-export default DashboardCard;
+export default VisaApplicationPage;

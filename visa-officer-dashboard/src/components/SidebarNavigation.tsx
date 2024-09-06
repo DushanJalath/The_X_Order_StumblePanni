@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import '../styles/sidebarNavigation.css'; // Make sure to import the CSS file
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import '../styles/sidebarNavigation.css';
 
 interface NavItem {
   name: string;
   icon: string;
+  path: string; // Add a path property for navigation
 }
 
 const Icon: React.FC<{ name: string }> = ({ name }) => (
@@ -13,16 +15,22 @@ const Icon: React.FC<{ name: string }> = ({ name }) => (
 const SidebarNavigation: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<string>('Visa Applications');
   const [isLogoutActive, setIsLogoutActive] = useState<boolean>(false);
+  const navigate = useNavigate(); // Initialize navigate
 
   const navItems: NavItem[] = [
-    { name: 'Visa Applications', icon: '📄' },
-    { name: 'Visa Applications Analytics', icon: '📊' },
+    { name: 'Visa Applications', icon: '📄', path: '/VisaApplicationPage' },
+    { name: 'Visa Applications Analytics', icon: '📊', path: '/VisaAnalyticsPage' },
   ];
 
   const handleLogout = (): void => {
     setIsLogoutActive(true);
     console.log('Logout clicked');
     setTimeout(() => setIsLogoutActive(false), 300);
+  };
+
+  const handleNavigation = (path: string, name: string) => {
+    setSelectedItem(name);
+    navigate(path); // Use navigate to change the page
   };
 
   return (
@@ -42,7 +50,7 @@ const SidebarNavigation: React.FC = () => {
           {navItems.map((item) => (
             <li key={item.name} className="nav-item">
               <button
-                onClick={() => setSelectedItem(item.name)}
+                onClick={() => handleNavigation(item.path, item.name)} // Call handleNavigation on click
                 className={`nav-button ${selectedItem === item.name ? 'active' : ''}`}
               >
                 <Icon name={item.icon} />
