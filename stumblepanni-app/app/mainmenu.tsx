@@ -66,14 +66,14 @@ const Index = () => {
           colors={["rgba(255, 255, 255, 0)", "rgba(0, 0, 0, 1)"]}
           style={styles.gradient}
         >
-          <View style={styles.viewL}>
+          <View style={styles.viewL32}>
             <Image
               source={assets.LogoName}
               style={[styles.logoName]}
               resizeMode="contain"
             />
           </View>
-          <View style={styles.viewL}>
+          <View style={styles.viewL48}>
             <View style={styles.viewLS}>
               <TouchableOpacity
                 style={[styles.menu, styles.menuDropShadow]}
@@ -189,6 +189,7 @@ const styles = StyleSheet.create({
   btn: {
     width: "50%",
     height: "50%",
+    maxHeight: 70,
     justifyContent: "center",
     alignItems: "center",
     padding: 5,
@@ -243,6 +244,21 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  viewL32: {
+    height: height * 0.30,
+    position: "relative",
+    flex: 1,
+    flexGrow: 0.5,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  viewL48: {
+    height: height * 0.48,
+    position: "relative",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   viewLS: {
     height: "50%",
     width: "100%",
@@ -282,7 +298,7 @@ const styles = StyleSheet.create({
   },
   dateText: {
     fontSize: 16,
-    lineHeight: 12,
+    lineHeight: 20,
     color: "white",
     fontWeight: "bold",
   },
@@ -335,6 +351,7 @@ const styles = StyleSheet.create({
     shadowColor: "black",
     shadowRadius: 30,
     shadowOpacity: 0.8,
+    elevation: 20,
   },
 });
 

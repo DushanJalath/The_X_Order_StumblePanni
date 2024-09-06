@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  Alert,
 } from "react-native";
 import { Link } from "expo-router";
 
@@ -14,6 +15,8 @@ import Checkbox from "@/components/Checkbox";
 import { Colors } from "@/constants/Colors";
 import { CommonStyles } from "@/constants/CommonStyles";
 import { useRouter } from "expo-router";
+import axios from "axios";
+import { Constants } from "@/constants/Constants";
 
 const index = () => {
   // states, validations
@@ -22,6 +25,7 @@ const index = () => {
   const [password, setPassword] = React.useState("");
   const [passwordVerify, setPasswordVerify] = React.useState(false);
   const [rememberMe, setRememberMe] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   const usernameValidation = (text: string) => {
     return text.length > 0;
@@ -32,20 +36,37 @@ const index = () => {
 
   // routing
   const router = useRouter();
-  const handelLogin = () => {
-    // console.log("Username: ", username);
-    // console.log("Password: ", password);
-    // console.log("Remember Me: ", rememberMe);
-    // console.log("Username Verify: ", usernameVerify);
-    // console.log("Password Verify: ", passwordVerify);
-    // console.log("Valid Credentials: ", usernameVerify && passwordVerify);
+
+  const handleLogin = async () => {
     const validCredentials = usernameVerify && passwordVerify;
-    if (validCredentials) {
-      router.push("/part1");
-    } else {
-      alert("Invalid Credentials");
+    if (!validCredentials) {
+      Alert.alert("Invalid Credentials", "Please enter valid credentials.");
+      return;
+    }
+    setLoading(true);
+
+    // login payload
+    const loginPayload = {
+      username: username,
+      password: password,
+    };
+
+    try {
+      const response = await axios.post(`${Constants.url}/auth/login`, loginPayload);
+
+      if (response.data.token) {
+        router.push("/part1");
+      } else {
+        Alert.alert('Login Failed', 'Invalid credentials');
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      Alert.alert('Login Failed', 'An error occurred. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
+
   const handleSignup = () => {
     router.push("/signup");
   };
@@ -88,7 +109,7 @@ const index = () => {
             <Text style={styles.forgotPassword}>Forgot Password?</Text>
           </TouchableOpacity>
         </View>
-        <AccentButton onPress={handelLogin} title="Log in"></AccentButton>
+        <AccentButton onPress={handleLogin} title={loading ? 'Logging in...' : 'Login'} disabled={loading}></AccentButton>
         <View style={styles.createAccountContainer}>
           <Text style={styles.createAccountText}>
             Don't you have an account?

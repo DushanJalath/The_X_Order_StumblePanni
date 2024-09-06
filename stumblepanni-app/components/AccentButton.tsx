@@ -1,10 +1,22 @@
-import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { Colors } from '@/constants/Colors';
+import React from "react";
+import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { Colors } from "@/constants/Colors";
 
-const AccentButton = ({ onPress, title, style, textStyle }: { onPress: () => void; title: string; style?: any; textStyle?: any }) => {
+const AccentButton = ({
+  onPress,
+  title,
+  style,
+  textStyle,
+  disabled,
+}: {
+  onPress: () => void;
+  title: string;
+  style?: any;
+  textStyle?: any;
+  disabled: any;
+}) => {
   return (
-    <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
+    <TouchableOpacity onPress={onPress} style={[styles.button, style]} disabled={disabled}>
       <Text style={[styles.buttonText, textStyle]}>{title}</Text>
     </TouchableOpacity>
   );
@@ -15,12 +27,12 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.pallete.accent,
     padding: 10,
     borderRadius: 15,
-    alignItems: 'center',
+    alignItems: "center",
   },
   buttonText: {
     color: Colors.pallete.white,
     fontSize: 20,
-    fontFamily: 'JosefinSansBold',
+    fontFamily: "JosefinSansBold",
   },
 });
 
