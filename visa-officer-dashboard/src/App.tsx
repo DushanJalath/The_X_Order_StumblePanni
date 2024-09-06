@@ -9,7 +9,7 @@ function App() {
     <>
       <div className="center-both">
         <nav>
-          <Link to="/">Home</Link>
+          <Link to="/">VisaApplication</Link>
           <Link to="/login">Login</Link>
           <Link to="/example">Example</Link>
         </nav>

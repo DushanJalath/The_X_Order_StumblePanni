@@ -1,12 +1,10 @@
-
-import SidebarNavigation from "../compoents/SidebarNavigation"
 import ParentComponent from '../components/InterpolList'
+import Layout from '../layouts/layout'
 const Login = () => {
   return (
-    <div>
+    <Layout>
       <ParentComponent/>
-      <SidebarNavigation/>
-    </div>
+    </Layout>
   )
 }
 
